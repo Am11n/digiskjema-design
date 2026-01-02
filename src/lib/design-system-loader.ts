@@ -7,16 +7,21 @@ import type { DesignSystem, ColorTokens, TypographyTokens } from '@/types/produc
 // Load JSON files from product/design-system at build time
 const designSystemFiles = import.meta.glob('/product/design-system/*.json', {
   eager: true,
-}) as Record<string, { default: Record<string, string> }>
+}) as Record<string, { default: Record<string, any> }>
 
 /**
  * Load color tokens from colors.json
  *
  * Expected format:
  * {
- *   "primary": "lime",
- *   "secondary": "teal",
- *   "neutral": "stone"
+ *   "primary": {
+ *     "50": "#eff6ff",
+ *     "100": "#dbeafe",
+ *     ...
+ *     "900": "#1e3a8a"
+ *   },
+ *   "secondary": { ... },
+ *   "neutral": { ... }
  * }
  */
 export function loadColorTokens(): ColorTokens | null {
@@ -24,14 +29,14 @@ export function loadColorTokens(): ColorTokens | null {
   if (!colorsModule?.default) return null
 
   const colors = colorsModule.default
-  if (!colors.primary || !colors.secondary || !colors.neutral) {
-    return null
-  }
-
+  
   return {
-    primary: colors.primary,
-    secondary: colors.secondary,
-    neutral: colors.neutral,
+    primary: colors.primary || {},
+    secondary: colors.secondary || {},
+    neutral: colors.neutral || {},
+    success: colors.success || {},
+    warning: colors.warning || {},
+    error: colors.error || {},
   }
 }
 
@@ -40,9 +45,14 @@ export function loadColorTokens(): ColorTokens | null {
  *
  * Expected format:
  * {
- *   "heading": "DM Sans",
- *   "body": "DM Sans",
- *   "mono": "IBM Plex Mono"
+ *   "fontFamilies": {
+ *     "heading": "Inter",
+ *     "body": "Inter",
+ *     "mono": "JetBrains Mono"
+ *   },
+ *   "fontSizes": { ... },
+ *   "fontWeights": { ... },
+ *   "lineHeights": { ... }
  * }
  */
 export function loadTypographyTokens(): TypographyTokens | null {
@@ -50,14 +60,12 @@ export function loadTypographyTokens(): TypographyTokens | null {
   if (!typographyModule?.default) return null
 
   const typography = typographyModule.default
-  if (!typography.heading || !typography.body) {
-    return null
-  }
-
+  
   return {
-    heading: typography.heading,
-    body: typography.body,
-    mono: typography.mono || 'IBM Plex Mono',
+    fontFamilies: typography.fontFamilies || {},
+    fontSizes: typography.fontSizes || {},
+    fontWeights: typography.fontWeights || {},
+    lineHeights: typography.lineHeights || {},
   }
 }
 

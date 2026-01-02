@@ -1,0 +1,377 @@
+{
+  "_meta": {
+    "description": "Sample data for the Skjema section",
+    "generated": "2026-01-02T00:00:00.000Z",
+    "fields": {
+      "forms": "List of form summaries with metadata",
+      "categories": "Form categories for filtering and organization",
+      "submissions": "Form submission records with status tracking",
+      "user": "User context including authentication and profile info",
+      "attachments": "File attachment metadata for form submissions"
+    }
+  },
+  "forms": [
+    {
+      "id": "skjema-001",
+      "title": "Søknad om barnehageplass",
+      "description": "Søk om plass i barnehage for barn mellom 1-6 år",
+      "categoryId": "barnehage",
+      "requiresLogin": true,
+      "status": "published",
+      "targetAudience": "Familier med barn",
+      "language": "nb",
+      "createdAt": "2025-11-15T09:30:00.000Z",
+      "updatedAt": "2025-12-01T14:22:00.000Z",
+      "deadline": "2026-04-30T23:59:59.000Z",
+      "estimatedTime": 15,
+      "hasAttachments": true,
+      "requiresPayment": false
+    },
+    {
+      "id": "skjema-002",
+      "title": "Melde fra om flytting",
+      "description": "Melde adresseendring til Folkeregisteret",
+      "categoryId": "folkeregister",
+      "requiresLogin": true,
+      "status": "published",
+      "targetAudience": "Privatpersoner",
+      "language": "nb",
+      "createdAt": "2025-10-20T11:15:00.000Z",
+      "updatedAt": "2025-11-25T16:45:00.000Z",
+      "deadline": null,
+      "estimatedTime": 5,
+      "hasAttachments": false,
+      "requiresPayment": false
+    },
+    {
+      "id": "skjema-003",
+      "title": "Søknad om byggetillatelse",
+      "description": "Søk om tillatelse til bygging eller ombygging",
+      "categoryId": "bygging",
+      "requiresLogin": true,
+      "status": "published",
+      "targetAudience": "Eiere og byggherrer",
+      "language": "nb",
+      "createdAt": "2025-09-05T13:45:00.000Z",
+      "updatedAt": "2025-12-10T10:30:00.000Z",
+      "deadline": "2026-03-31T23:59:59.000Z",
+      "estimatedTime": 45,
+      "hasAttachments": true,
+      "requiresPayment": true
+    },
+    {
+      "id": "skjema-004",
+      "title": "Søknad om stipend",
+      "description": "Stipendsøknad for studenter og forskere",
+      "categoryId": "utdanning",
+      "requiresLogin": true,
+      "status": "published",
+      "targetAudience": "Studenter",
+      "language": "nb",
+      "createdAt": "2025-12-01T08:20:00.000Z",
+      "updatedAt": "2025-12-15T15:10:00.000Z",
+      "deadline": "2026-02-15T23:59:59.000Z",
+      "estimatedTime": 30,
+      "hasAttachments": true,
+      "requiresPayment": false
+    },
+    {
+      "id": "skjema-005",
+      "title": "Klage på eksamensresultat",
+      "description": "Klage på karakter eller eksamensvurdering",
+      "categoryId": "utdanning",
+      "requiresLogin": true,
+      "status": "published",
+      "targetAudience": "Studenter",
+      "language": "nb",
+      "createdAt": "2025-11-10T12:30:00.000Z",
+      "updatedAt": "2025-11-30T09:45:00.000Z",
+      "deadline": "2026-01-31T23:59:59.000Z",
+      "estimatedTime": 20,
+      "hasAttachments": true,
+      "requiresPayment": false
+    },
+    {
+      "id": "skjema-006",
+      "title": "Bestill skattemelding",
+      "description": "Bestill ekstra eksemplar av skattemelding",
+      "categoryId": "skatt",
+      "requiresLogin": true,
+      "status": "draft",
+      "targetAudience": "Privatpersoner",
+      "language": "nb",
+      "createdAt": "2025-12-15T14:00:00.000Z",
+      "updatedAt": "2025-12-15T14:00:00.000Z",
+      "deadline": null,
+      "estimatedTime": 3,
+      "hasAttachments": false,
+      "requiresPayment": false
+    },
+    {
+      "id": "skjema-007",
+      "title": "Søknad om midler til idrettslag",
+      "description": "Søk om økonomisk støtte til idrettsaktiviteter",
+      "categoryId": "idrett",
+      "requiresLogin": false,
+      "status": "published",
+      "targetAudience": "Idrettslag og foreninger",
+      "language": "nb",
+      "createdAt": "2025-08-20T16:15:00.000Z",
+      "updatedAt": "2025-12-05T11:20:00.000Z",
+      "deadline": "2026-03-15T23:59:59.000Z",
+      "estimatedTime": 25,
+      "hasAttachments": true,
+      "requiresPayment": false
+    },
+    {
+      "id": "skjema-008",
+      "title": "Anmeldelse av vold",
+      "description": "Anmeld voldshandlinger til politiet",
+      "categoryId": "trygghet",
+      "requiresLogin": false,
+      "status": "published",
+      "targetAudience": "Offre og vitner",
+      "language": "nb",
+      "createdAt": "2025-10-01T10:00:00.000Z",
+      "updatedAt": "2025-11-20T13:30:00.000Z",
+      "deadline": null,
+      "estimatedTime": 35,
+      "hasAttachments": true,
+      "requiresPayment": false
+    }
+  ],
+  "categories": [
+    {
+      "id": "barnehage",
+      "name": "Barnehage",
+      "description": "Søknader og meldinger knyttet til barnehageplasser",
+      "color": "#3B82F6",
+      "order": 1
+    },
+    {
+      "id": "folkeregister",
+      "name": "Folkeregister",
+      "description": "Adresseendringer og andre folkeregistermeldinger",
+      "color": "#10B981",
+      "order": 2
+    },
+    {
+      "id": "bygging",
+      "name": "Bygging",
+      "description": "Byggetillatelser og byggemeldinger",
+      "color": "#F59E0B",
+      "order": 3
+    },
+    {
+      "id": "utdanning",
+      "name": "Utdanning",
+      "description": "Søknader og klager knyttet til utdanning",
+      "color": "#8B5CF6",
+      "order": 4
+    },
+    {
+      "id": "skatt",
+      "name": "Skatt",
+      "description": "Skatteknyttede skjema og bestillinger",
+      "color": "#EF4444",
+      "order": 5
+    }
+  ],
+  "submissions": [
+    {
+      "id": "inn-001",
+      "formId": "skjema-001",
+      "userId": "user-001",
+      "status": "submitted",
+      "submittedAt": "2025-12-10T14:30:00.000Z",
+      "referenceNumber": "SKJ-2025-001234",
+      "progress": 100,
+      "lastModified": "2025-12-10T14:25:00.000Z",
+      "formData": {
+        "childName": "Ola Nordmann",
+        "childBirthDate": "2023-05-15",
+        "parentName": "Kari Nordmann",
+        "address": "Hovedgata 12, 0123 Oslo",
+        "preferredStart": "2026-08-01",
+        "allergies": "Ingen kjente allergier"
+      },
+      "attachments": [
+        "inn-001-vedlegg-001",
+        "inn-001-vedlegg-002"
+      ]
+    },
+    {
+      "id": "inn-002",
+      "formId": "skjema-002",
+      "userId": "user-002",
+      "status": "submitted",
+      "submittedAt": "2025-12-12T09:15:00.000Z",
+      "referenceNumber": "SKJ-2025-001235",
+      "progress": 100,
+      "lastModified": "2025-12-12T09:10:00.000Z",
+      "formData": {
+        "oldAddress": "Nygata 5, 0123 Oslo",
+        "newAddress": "Hovedgata 15, 0124 Oslo",
+        "moveDate": "2025-12-15",
+        "reason": "Flytting til ny leilighet"
+      },
+      "attachments": []
+    },
+    {
+      "id": "inn-003",
+      "formId": "skjema-003",
+      "userId": "user-003",
+      "status": "draft",
+      "submittedAt": null,
+      "referenceNumber": null,
+      "progress": 65,
+      "lastModified": "2025-12-14T16:20:00.000Z",
+      "formData": {
+        "propertyAddress": "Byggveien 10, 1234 Bygstad",
+        "buildingType": "Nybygg",
+        "buildingDescription": "Enkeltsonefamiliehus med 150 kvm",
+        "applicantName": "Per Hansen",
+        "applicantPhone": "12345678"
+      },
+      "attachments": [
+        "inn-003-vedlegg-001"
+      ]
+    },
+    {
+      "id": "inn-004",
+      "formId": "skjema-004",
+      "userId": "user-004",
+      "status": "failed",
+      "submittedAt": "2025-12-08T11:45:00.000Z",
+      "referenceNumber": null,
+      "progress": 100,
+      "lastModified": "2025-12-08T11:45:00.000Z",
+      "formData": {
+        "studentName": "Ingrid Larsen",
+        "studentNumber": "S12345678",
+        "studyProgram": "Dataingeniør",
+        "semester": "Høst 2025",
+        "financialNeed": "Stipendet vil dekke studieavgift og livsopphold"
+      },
+      "attachments": [
+        "inn-004-vedlegg-001",
+        "inn-004-vedlegg-002",
+        "inn-004-vedlegg-003"
+      ]
+    },
+    {
+      "id": "inn-005",
+      "formId": "skjema-005",
+      "userId": "user-005",
+      "status": "submitted",
+      "submittedAt": "2025-12-15T13:20:00.000Z",
+      "referenceNumber": "SKJ-2025-001236",
+      "progress": 100,
+      "lastModified": "2025-12-15T13:15:00.000Z",
+      "formData": {
+        "studentName": "Jon Olsson",
+        "examSubject": "Matematikk R1",
+        "examDate": "2025-11-20",
+        "gradeReceived": "E",
+        "reasonForAppeal": "Synes karakteren ikke reflekterer arbeidsinnsats"
+      },
+      "attachments": [
+        "inn-005-vedlegg-001"
+      ]
+    },
+    {
+      "id": "inn-006",
+      "formId": "skjema-001",
+      "userId": "user-006",
+      "status": "draft",
+      "submittedAt": null,
+      "referenceNumber": null,
+      "progress": 30,
+      "lastModified": "2025-12-16T10:30:00.000Z",
+      "formData": {
+        "childName": "Emma Johansen",
+        "childBirthDate": "2024-02-10"
+      },
+      "attachments": []
+    }
+  ],
+  "user": {
+    "authenticatedUser": {
+      "id": "user-001",
+      "name": "Kari Nordmann",
+      "email": "kari.nordmann@example.com",
+      "authProvider": "idporten",
+      "externalId": "12345678901",
+      "roles": ["user"],
+      "profile": {
+        "phone": "+47 12345678",
+        "address": "Hovedgata 12, 0123 Oslo"
+      },
+      "preferences": {
+        "language": "nb",
+        "notifications": true,
+        "emailUpdates": true
+      }
+    },
+    "anonymousUser": {
+      "id": null,
+      "name": null,
+      "email": null,
+      "authProvider": null,
+      "externalId": null,
+      "roles": ["anonymous"],
+      "profile": {},
+      "preferences": {
+        "language": "nb",
+        "notifications": false,
+        "emailUpdates": false
+      }
+    }
+  },
+  "attachments": [
+    {
+      "id": "inn-001-vedlegg-001",
+      "submissionId": "inn-001",
+      "fileName": "barnetrygd-dokument.pdf",
+      "fileType": "application/pdf",
+      "fileSize": 2048000,
+      "uploadedAt": "2025-12-10T14:15:00.000Z",
+      "uploadedBy": "user-001",
+      "status": "verified",
+      "description": "Bekreftelse på barnetrygd"
+    },
+    {
+      "id": "inn-001-vedlegg-002",
+      "submissionId": "inn-001",
+      "fileName": "legeerklæring.pdf",
+      "fileType": "application/pdf",
+      "fileSize": 1536000,
+      "uploadedAt": "2025-12-10T14:20:00.000Z",
+      "uploadedBy": "user-001",
+      "status": "verified",
+      "description": "Legeerklæring for allergier"
+    },
+    {
+      "id": "inn-003-vedlegg-001",
+      "submissionId": "inn-003",
+      "fileName": "tegninger.pdf",
+      "fileType": "application/pdf",
+      "fileSize": 5120000,
+      "uploadedAt": "2025-12-14T15:45:00.000Z",
+      "uploadedBy": "user-003",
+      "status": "pending",
+      "description": "Byggetegninger"
+    },
+    {
+      "id": "inn-004-vedlegg-001",
+      "submissionId": "inn-004",
+      "fileName": "transkript.pdf",
+      "fileType": "application/pdf",
+      "fileSize": 3072000,
+      "uploadedAt": "2025-12-08T11:30:00.000Z",
+      "uploadedBy": "user-004",
+      "status": "verified",
+      "description": "Karaktertranskript"
+    }
+  ]
+}

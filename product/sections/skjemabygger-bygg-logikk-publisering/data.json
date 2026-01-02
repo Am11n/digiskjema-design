@@ -1,0 +1,481 @@
+{
+  "_meta": {
+    "description": "Sample data for the Skjemabygger section",
+    "generated": "2026-01-02T00:00:00.000Z",
+    "fields": {
+      "schemas": "Form schemas with components and logic",
+      "componentsLibrary": "Available component types for form building",
+      "rules": "Validation and logic rules for forms",
+      "publish": "Publishing information and version history"
+    }
+  },
+  "schemas": [
+    {
+      "id": "schema-001",
+      "name": "Kontakt oss skjema",
+      "description": "Enkelt skjema for å kontakte oss",
+      "version": "1.0.0",
+      "status": "published",
+      "createdAt": "2025-11-15T09:30:00.000Z",
+      "updatedAt": "2025-12-01T14:22:00.000Z",
+      "publishedAt": "2025-12-01T14:22:00.000Z",
+      "components": [
+        {
+          "id": "comp-001",
+          "type": "text",
+          "label": "Fullt navn",
+          "required": true,
+          "placeholder": "Skriv inn ditt fulle navn",
+          "validation": ["required"],
+          "position": 0
+        },
+        {
+          "id": "comp-002",
+          "type": "email",
+          "label": "E-postadresse",
+          "required": true,
+          "placeholder": "eksempel@domene.no",
+          "validation": ["required", "email"],
+          "position": 1
+        },
+        {
+          "id": "comp-003",
+          "type": "textarea",
+          "label": "Melding",
+          "required": true,
+          "placeholder": "Skriv din melding her...",
+          "validation": ["required", "minLength:10"],
+          "position": 2
+        }
+      ]
+    },
+    {
+      "id": "schema-002",
+      "name": "Søknad om barnehageplass",
+      "description": "Avansert skjema med betinget logikk",
+      "version": "2.1.0",
+      "status": "published",
+      "createdAt": "2025-10-20T11:15:00.000Z",
+      "updatedAt": "2025-12-10T10:30:00.000Z",
+      "publishedAt": "2025-12-10T10:30:00.000Z",
+      "components": [
+        {
+          "id": "comp-004",
+          "type": "text",
+          "label": "Fullt navn",
+          "required": true,
+          "placeholder": "Skriv inn ditt fulle navn",
+          "validation": ["required"],
+          "position": 0
+        },
+        {
+          "id": "comp-005",
+          "type": "date",
+          "label": "Fødselsdato",
+          "required": true,
+          "validation": ["required", "date"],
+          "position": 1
+        },
+        {
+          "id": "comp-006",
+          "type": "select",
+          "label": "Har barnet noen allergier?",
+          "required": false,
+          "options": [
+            { "value": "nei", "label": "Nei" },
+            { "value": "ja", "label": "Ja" }
+          ],
+          "validation": [],
+          "position": 2
+        },
+        {
+          "id": "comp-007",
+          "type": "textarea",
+          "label": "Hvis ja, beskriv allergier",
+          "required": false,
+          "placeholder": "Beskriv hvilke allergier barnet har",
+          "validation": [],
+          "position": 3,
+          "conditional": {
+            "field": "comp-006",
+            "condition": "equals",
+            "value": "ja",
+            "action": "show"
+          }
+        },
+        {
+          "id": "comp-008",
+          "type": "file",
+          "label": "Legedokumentasjon",
+          "required": false,
+          "validation": ["fileType:pdf"],
+          "position": 4,
+          "conditional": {
+            "field": "comp-006",
+            "condition": "equals",
+            "value": "ja",
+            "action": "show"
+          }
+        }
+      ],
+      "logicRules": [
+        {
+          "id": "rule-001",
+          "type": "visibility",
+          "triggerField": "comp-006",
+          "condition": {
+            "field": "comp-006",
+            "operator": "equals",
+            "value": "ja"
+          },
+          "action": {
+            "targetField": "comp-007",
+            "type": "show"
+          }
+        },
+        {
+          "id": "rule-002",
+          "type": "visibility",
+          "triggerField": "comp-006",
+          "condition": {
+            "field": "comp-006",
+            "operator": "equals",
+            "value": "ja"
+          },
+          "action": {
+            "targetField": "comp-008",
+            "type": "show"
+          }
+        }
+      ]
+    },
+    {
+      "id": "schema-003",
+      "name": "Kostnadsberegning",
+      "description": "Skjema med beregninger og dynamiske felt",
+      "version": "1.2.0",
+      "status": "draft",
+      "createdAt": "2025-12-01T08:20:00.000Z",
+      "updatedAt": "2025-12-15T15:10:00.000Z",
+      "publishedAt": null,
+      "components": [
+        {
+          "id": "comp-009",
+          "type": "number",
+          "label": "Antall timer per uke",
+          "required": true,
+          "validation": ["required", "min:1", "max:40"],
+          "position": 0
+        },
+        {
+          "id": "comp-010",
+          "type": "number",
+          "label": "Timelønn (kr)",
+          "required": true,
+          "validation": ["required", "min:100", "max:2000"],
+          "position": 1
+        },
+        {
+          "id": "comp-011",
+          "type": "number",
+          "label": "Ukeslønn (beregnet)",
+          "required": false,
+          "validation": [],
+          "position": 2,
+          "calculated": {
+            "formula": "comp-009 * comp-010",
+            "dependsOn": ["comp-009", "comp-010"]
+          }
+        },
+        {
+          "id": "comp-012",
+          "type": "repeater",
+          "label": "Ukedager",
+          "required": false,
+          "validation": [],
+          "position": 3,
+          "repeaterConfig": {
+            "minItems": 1,
+            "maxItems": 7,
+            "fields": [
+              {
+                "id": "day",
+                "type": "select",
+                "label": "Ukedag",
+                "options": [
+                  { "value": "mandag", "label": "Mandag" },
+                  { "value": "tirsdag", "label": "Tirsdag" },
+                  { "value": "onsdag", "label": "Onsdag" },
+                  { "value": "torsdag", "label": "Torsdag" },
+                  { "value": "fredag", "label": "Fredag" }
+                ]
+              },
+              {
+                "id": "hours",
+                "type": "number",
+                "label": "Antall timer"
+              }
+            ]
+          }
+        }
+      ],
+      "calculationRules": [
+        {
+          "id": "calc-001",
+          "type": "calculation",
+          "targetField": "comp-011",
+          "formula": "comp-009 * comp-010",
+          "dependsOn": ["comp-009", "comp-010"]
+        }
+      ]
+    }
+  ],
+  "componentsLibrary": [
+    {
+      "type": "text",
+      "name": "Tekstfelt",
+      "category": "input",
+      "icon": "text",
+      "properties": {
+        "label": { "type": "string", "required": true },
+        "placeholder": { "type": "string", "required": false },
+        "required": { "type": "boolean", "required": false, "default": false }
+      }
+    },
+    {
+      "type": "email",
+      "name": "E-postfelt",
+      "category": "input",
+      "icon": "email",
+      "properties": {
+        "label": { "type": "string", "required": true },
+        "placeholder": { "type": "string", "required": false },
+        "required": { "type": "boolean", "required": false, "default": false }
+      }
+    },
+    {
+      "type": "number",
+      "name": "Tallfelt",
+      "category": "input",
+      "icon": "number",
+      "properties": {
+        "label": { "type": "string", "required": true },
+        "placeholder": { "type": "string", "required": false },
+        "required": { "type": "boolean", "required": false, "default": false },
+        "min": { "type": "number", "required": false },
+        "max": { "type": "number", "required": false }
+      }
+    },
+    {
+      "type": "date",
+      "name": "Dato",
+      "category": "input",
+      "icon": "calendar",
+      "properties": {
+        "label": { "type": "string", "required": true },
+        "required": { "type": "boolean", "required": false, "default": false }
+      }
+    },
+    {
+      "type": "textarea",
+      "name": "Tekstområde",
+      "category": "input",
+      "icon": "textarea",
+      "properties": {
+        "label": { "type": "string", "required": true },
+        "placeholder": { "type": "string", "required": false },
+        "required": { "type": "boolean", "required": false, "default": false },
+        "rows": { "type": "number", "required": false, "default": 4 }
+      }
+    },
+    {
+      "type": "select",
+      "name": "Nedtrekksliste",
+      "category": "input",
+      "icon": "select",
+      "properties": {
+        "label": { "type": "string", "required": true },
+        "required": { "type": "boolean", "required": false, "default": false },
+        "options": { 
+          "type": "array", 
+          "items": {
+            "value": { "type": "string" },
+            "label": { "type": "string" }
+          },
+          "required": true 
+        }
+      }
+    },
+    {
+      "type": "checkbox",
+      "name": "Avkrysningsboks",
+      "category": "input",
+      "icon": "checkbox",
+      "properties": {
+        "label": { "type": "string", "required": true },
+        "required": { "type": "boolean", "required": false, "default": false }
+      }
+    },
+    {
+      "type": "file",
+      "name": "Filopplasting",
+      "category": "input",
+      "icon": "upload",
+      "properties": {
+        "label": { "type": "string", "required": true },
+        "required": { "type": "boolean", "required": false, "default": false },
+        "accept": { "type": "string", "required": false }
+      }
+    },
+    {
+      "type": "group",
+      "name": "Gruppe",
+      "category": "layout",
+      "icon": "folder",
+      "properties": {
+        "label": { "type": "string", "required": true },
+        "description": { "type": "string", "required": false }
+      }
+    },
+    {
+      "type": "repeater",
+      "name": "Gjentakende gruppe",
+      "category": "layout",
+      "icon": "repeat",
+      "properties": {
+        "label": { "type": "string", "required": true },
+        "minItems": { "type": "number", "required": false, "default": 0 },
+        "maxItems": { "type": "number", "required": false }
+      }
+    }
+  ],
+  "rules": [
+    {
+      "id": "rule-001",
+      "name": "Påkrevd felt",
+      "type": "validation",
+      "category": "required",
+      "expression": "value !== null && value !== ''",
+      "errorMessage": "Dette feltet er påkrevd"
+    },
+    {
+      "id": "rule-002",
+      "name": "E-postformat",
+      "type": "validation",
+      "category": "format",
+      "expression": "value.match(/^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/)",
+      "errorMessage": "Vennligst oppgi en gyldig e-postadresse"
+    },
+    {
+      "id": "rule-003",
+      "name": "Minste lengde",
+      "type": "validation",
+      "category": "length",
+      "expression": "value.length >= minLength",
+      "errorMessage": "Feltet må være minst {minLength} tegn",
+      "parameters": ["minLength"]
+    },
+    {
+      "id": "rule-004",
+      "name": "Verdiområde",
+      "type": "validation",
+      "category": "range",
+      "expression": "value >= min && value <= max",
+      "errorMessage": "Verdien må være mellom {min} og {max}",
+      "parameters": ["min", "max"]
+    },
+    {
+      "id": "rule-005",
+      "name": "Vis felt hvis",
+      "type": "logic",
+      "category": "visibility",
+      "expression": "triggerValue === expectedValue",
+      "action": "show",
+      "parameters": ["triggerField", "expectedValue"]
+    },
+    {
+      "id": "rule-006",
+      "name": "Skjul felt hvis",
+      "type": "logic",
+      "category": "visibility",
+      "expression": "triggerValue === expectedValue",
+      "action": "hide",
+      "parameters": ["triggerField", "expectedValue"]
+    },
+    {
+      "id": "rule-007",
+      "name": "Beregn felt",
+      "type": "calculation",
+      "category": "calculation",
+      "expression": "formula",
+      "action": "calculate",
+      "parameters": ["formula", "dependsOn"]
+    }
+  ],
+  "publish": [
+    {
+      "schemaId": "schema-001",
+      "versions": [
+        {
+          "version": "1.0.0",
+          "status": "published",
+          "publishedAt": "2025-12-01T14:22:00.000Z",
+          "publishedBy": "admin-001",
+          "changelog": "Første versjon av kontakt oss skjema"
+        }
+      ]
+    },
+    {
+      "schemaId": "schema-002",
+      "versions": [
+        {
+          "version": "1.0.0",
+          "status": "published",
+          "publishedAt": "2025-11-20T10:15:00.000Z",
+          "publishedBy": "admin-001",
+          "changelog": "Første versjon av barnehageplass søknad"
+        },
+        {
+          "version": "2.0.0",
+          "status": "published",
+          "publishedAt": "2025-11-25T14:30:00.000Z",
+          "publishedBy": "admin-002",
+          "changelog": "Lagt til betinget logikk for allergier"
+        },
+        {
+          "version": "2.1.0",
+          "status": "published",
+          "publishedAt": "2025-12-10T10:30:00.000Z",
+          "publishedBy": "admin-001",
+          "changelog": "Oppdatert feltbeskrivelser"
+        }
+      ]
+    },
+    {
+      "schemaId": "schema-003",
+      "versions": [
+        {
+          "version": "1.0.0",
+          "status": "draft",
+          "publishedAt": null,
+          "publishedBy": null,
+          "changelog": "Startet arbeid med kostnadsberegning"
+        },
+        {
+          "version": "1.1.0",
+          "status": "draft",
+          "publishedAt": null,
+          "publishedBy": null,
+          "changelog": "Lagt til beregningslogikk"
+        },
+        {
+          "version": "1.2.0",
+          "status": "draft",
+          "publishedAt": null,
+          "publishedBy": null,
+          "changelog": "Oppdatert feltkonfigurasjon"
+        }
+      ]
+    }
+  ]
+}

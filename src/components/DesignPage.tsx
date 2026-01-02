@@ -108,15 +108,18 @@ export function DesignPage() {
                     <div className="grid grid-cols-3 gap-6">
                       <ColorSwatch
                         label="Primary"
-                        colorName={designSystem.colors.primary}
+                        colorName="blue" // Use a simple color name for the preview
+                        colorShades={designSystem.colors.primary}
                       />
                       <ColorSwatch
                         label="Secondary"
-                        colorName={designSystem.colors.secondary}
+                        colorName="violet" // Use a simple color name for the preview
+                        colorShades={designSystem.colors.secondary}
                       />
                       <ColorSwatch
                         label="Neutral"
-                        colorName={designSystem.colors.neutral}
+                        colorName="gray" // Use a simple color name for the preview
+                        colorShades={designSystem.colors.neutral}
                       />
                     </div>
                   </div>
@@ -132,19 +135,19 @@ export function DesignPage() {
                       <div>
                         <p className="text-xs text-stone-500 dark:text-stone-400 mb-1">Heading</p>
                         <p className="font-semibold text-stone-900 dark:text-stone-100">
-                          {designSystem.typography.heading}
+                          {designSystem.typography.fontFamilies?.heading || 'Inter'}
                         </p>
                       </div>
                       <div>
                         <p className="text-xs text-stone-500 dark:text-stone-400 mb-1">Body</p>
                         <p className="text-stone-900 dark:text-stone-100">
-                          {designSystem.typography.body}
+                          {designSystem.typography.fontFamilies?.body || 'Inter'}
                         </p>
                       </div>
                       <div>
                         <p className="text-xs text-stone-500 dark:text-stone-400 mb-1">Mono</p>
                         <p className="font-mono text-stone-900 dark:text-stone-100">
-                          {designSystem.typography.mono}
+                          {designSystem.typography.fontFamilies?.mono || 'JetBrains Mono'}
                         </p>
                       </div>
                     </div>
@@ -253,11 +256,44 @@ export function DesignPage() {
 interface ColorSwatchProps {
   label: string
   colorName: string
+  colorShades?: Record<string, string>
 }
 
-function ColorSwatch({ label, colorName }: ColorSwatchProps) {
+function ColorSwatch({ label, colorName, colorShades }: ColorSwatchProps) {
   const colors = colorMap[colorName] || colorMap.stone
+  
+  // If we have actual color shades, use them for the preview
+  if (colorShades) {
+    const lightShade = colorShades['100'] || colorShades['200'] || colorShades['50']
+    const baseShade = colorShades['500'] || Object.values(colorShades)[Math.floor(Object.keys(colorShades).length / 2)]
+    const darkShade = colorShades['700'] || colorShades['800'] || colorShades['900'] || Object.values(colorShades)[Object.keys(colorShades).length - 1]
+    
+    return (
+      <div>
+        <div className="flex gap-0.5 mb-2">
+          <div
+            className="flex-1 h-14 rounded-l-md"
+            style={{ backgroundColor: lightShade }}
+            title={`${colorName}-100`}
+          />
+          <div
+            className="flex-[2] h-14"
+            style={{ backgroundColor: baseShade }}
+            title={`${colorName}-500`}
+          />
+          <div
+            className="flex-1 h-14 rounded-r-md"
+            style={{ backgroundColor: darkShade }}
+            title={`${colorName}-800`}
+          />
+        </div>
+        <p className="text-sm font-medium text-stone-900 dark:text-stone-100">{label}</p>
+        <p className="text-xs text-stone-500 dark:text-stone-400">{colorName}</p>
+      </div>
+    )
+  }
 
+  // Fallback to the old color map approach
   return (
     <div>
       <div className="flex gap-0.5 mb-2">

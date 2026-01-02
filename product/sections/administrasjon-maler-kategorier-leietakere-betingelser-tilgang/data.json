@@ -1,0 +1,452 @@
+{
+  "_meta": {
+    "description": "Sample data for the Administrasjon section",
+    "generated": "2026-01-02T00:00:00.000Z",
+    "fields": {
+      "templates": "Form templates for reuse",
+      "categories": "Form categories for organization",
+      "tenants": "Tenant configurations (municipalities)",
+      "terms": "Terms and conditions for forms",
+      "roles": "User roles and permissions"
+    }
+  },
+  "templates": [
+    {
+      "id": "tmpl-001",
+      "name": "Standard søknad",
+      "description": "Mal for enkeltsøknader med personopplysninger",
+      "type": "application",
+      "status": "active",
+      "createdAt": "2025-11-15T09:30:00.000Z",
+      "updatedAt": "2025-12-01T14:22:00.000Z",
+      "createdBy": "admin-001",
+      "fields": [
+        {
+          "id": "field-001",
+          "type": "text",
+          "label": "Fullt navn",
+          "required": true,
+          "validation": ["required"]
+        },
+        {
+          "id": "field-002",
+          "type": "email",
+          "label": "E-postadresse",
+          "required": true,
+          "validation": ["required", "email"]
+        }
+      ]
+    },
+    {
+      "id": "tmpl-002",
+      "name": "Anmeldelse",
+      "description": "Mal for anmeldelser og rapportering",
+      "type": "report",
+      "status": "active",
+      "createdAt": "2025-10-20T11:15:00.000Z",
+      "updatedAt": "2025-11-25T16:45:00.000Z",
+      "createdBy": "admin-002",
+      "fields": [
+        {
+          "id": "field-003",
+          "type": "textarea",
+          "label": "Beskrivelse",
+          "required": true,
+          "validation": ["required", "minLength:10"]
+        },
+        {
+          "id": "field-004",
+          "type": "date",
+          "label": "Dato for hendelse",
+          "required": true,
+          "validation": ["required", "date"]
+        }
+      ]
+    },
+    {
+      "id": "tmpl-003",
+      "name": "Klage",
+      "description": "Mal for klager på tjenester",
+      "type": "appeal",
+      "status": "active",
+      "createdAt": "2025-09-05T13:45:00.000Z",
+      "updatedAt": "2025-12-10T10:30:00.000Z",
+      "createdBy": "admin-003",
+      "fields": [
+        {
+          "id": "field-005",
+          "type": "select",
+          "label": "Klasse",
+          "required": true,
+          "options": [
+            { "value": "service", "label": "Service" },
+            { "value": "response", "label": "Respons" },
+            { "value": "other", "label": "Annet" }
+          ],
+          "validation": ["required"]
+        }
+      ]
+    },
+    {
+      "id": "tmpl-004",
+      "name": "Tilbakemelding",
+      "description": "Mal for brukertilbakemeldinger",
+      "type": "feedback",
+      "status": "active",
+      "createdAt": "2025-12-01T08:20:00.000Z",
+      "updatedAt": "2025-12-15T15:10:00.000Z",
+      "createdBy": "admin-001",
+      "fields": [
+        {
+          "id": "field-006",
+          "type": "number",
+          "label": "Tilfredshet (1-5)",
+          "required": true,
+          "validation": ["required", "min:1", "max:5"]
+        }
+      ]
+    },
+    {
+      "id": "tmpl-005",
+      "name": "Bestilling",
+      "description": "Mal for bestillinger av tjenester",
+      "type": "order",
+      "status": "archived",
+      "createdAt": "2025-11-10T12:30:00.000Z",
+      "updatedAt": "2025-11-30T09:45:00.000Z",
+      "createdBy": "admin-002",
+      "fields": [
+        {
+          "id": "field-007",
+          "type": "text",
+          "label": "Tjeneste",
+          "required": true,
+          "validation": ["required"]
+        },
+        {
+          "id": "field-008",
+          "type": "date",
+          "label": "Ønsket dato",
+          "required": true,
+          "validation": ["required", "date"]
+        }
+      ]
+    },
+    {
+      "id": "tmpl-006",
+      "name": "Registrering",
+      "description": "Mal for registrering av ny bruker",
+      "type": "registration",
+      "status": "active",
+      "createdAt": "2025-12-15T14:00:00.000Z",
+      "updatedAt": "2025-12-15T14:00:00.000Z",
+      "createdBy": "admin-003",
+      "fields": [
+        {
+          "id": "field-009",
+          "type": "text",
+          "label": "Firmanavn",
+          "required": true,
+          "validation": ["required"]
+        },
+        {
+          "id": "field-010",
+          "type": "text",
+          "label": "Organisasjonsnummer",
+          "required": true,
+          "validation": ["required", "orgNumber"]
+        }
+      ]
+    }
+  ],
+  "categories": [
+    {
+      "id": "cat-001",
+      "name": "Barnehage",
+      "description": "Søknader og meldinger knyttet til barnehageplasser",
+      "color": "#3B82F6",
+      "order": 1,
+      "parentId": null
+    },
+    {
+      "id": "cat-002",
+      "name": "Folkeregister",
+      "description": "Adresseendringer og andre folkeregistermeldinger",
+      "color": "#10B981",
+      "order": 2,
+      "parentId": null
+    },
+    {
+      "id": "cat-003",
+      "name": "Bygging",
+      "description": "Byggetillatelser og byggemeldinger",
+      "color": "#F59E0B",
+      "order": 3,
+      "parentId": null
+    },
+    {
+      "id": "cat-004",
+      "name": "Utdanning",
+      "description": "Søknader og klager knyttet til utdanning",
+      "color": "#8B5CF6",
+      "order": 4,
+      "parentId": null
+    },
+    {
+      "id": "cat-005",
+      "name": "Skatt",
+      "description": "Skatteknyttede skjema og bestillinger",
+      "color": "#EF4444",
+      "order": 5,
+      "parentId": null
+    },
+    {
+      "id": "cat-006",
+      "name": "Idrett",
+      "description": "Idrettsskjemaler og søknader",
+      "color": "#F97316",
+      "order": 6,
+      "parentId": null
+    },
+    {
+      "id": "cat-007",
+      "name": "Trygghet",
+      "description": "Sikkerhets- og trygghetsskjemaler",
+      "color": "#84CC16",
+      "order": 7,
+      "parentId": null
+    },
+    {
+      "id": "cat-008",
+      "name": "Helse",
+      "description": "Helseskjemaler og søknader",
+      "color": "#EC4899",
+      "order": 8,
+      "parentId": null
+    }
+  ],
+  "tenants": [
+    {
+      "id": "tenant-001",
+      "name": "Oslo kommune",
+      "subdomain": "oslo",
+      "status": "active",
+      "configuration": {
+        "branding": {
+          "logoUrl": "https://example.com/oslo-logo.png",
+          "primaryColor": "#0062ba",
+          "secondaryColor": "#f0f0f0"
+        },
+        "language": {
+          "default": "nb",
+          "available": ["nb", "en"]
+        },
+        "contact": {
+          "email": "info@oslo.kommune.no",
+          "phone": "+47 22 11 10 00"
+        }
+      },
+      "createdAt": "2025-01-15T09:00:00.000Z",
+      "updatedAt": "2025-12-01T14:22:00.000Z",
+      "createdBy": "admin-001"
+    },
+    {
+      "id": "tenant-002",
+      "name": "Bergen kommune",
+      "subdomain": "bergen",
+      "status": "active",
+      "configuration": {
+        "branding": {
+          "logoUrl": "https://example.com/bergen-logo.png",
+          "primaryColor": "#007bc0",
+          "secondaryColor": "#f5f5f5"
+        },
+        "language": {
+          "default": "nb",
+          "available": ["nb", "en", "nn"]
+        },
+        "contact": {
+          "email": "post@bergen.kommune.no",
+          "phone": "+47 55 55 10 00"
+        }
+      },
+      "createdAt": "2025-02-20T10:15:00.000Z",
+      "updatedAt": "2025-11-25T16:45:00.000Z",
+      "createdBy": "admin-002"
+    },
+    {
+      "id": "tenant-003",
+      "name": "Trondheim kommune",
+      "subdomain": "trondheim",
+      "status": "active",
+      "configuration": {
+        "branding": {
+          "logoUrl": "https://example.com/trondheim-logo.png",
+          "primaryColor": "#006633",
+          "secondaryColor": "#e6e6e6"
+        },
+        "language": {
+          "default": "nb",
+          "available": ["nb", "en"]
+        },
+        "contact": {
+          "email": "postmottak@trondheim.kommune.no",
+          "phone": "+47 73 55 73 55"
+        }
+      },
+      "createdAt": "2025-03-10T11:30:00.000Z",
+      "updatedAt": "2025-10-10T09:30:00.000Z",
+      "createdBy": "admin-001"
+    },
+    {
+      "id": "tenant-004",
+      "name": "Stavanger kommune",
+      "subdomain": "stavanger",
+      "status": "suspended",
+      "configuration": {
+        "branding": {
+          "logoUrl": "https://example.com/stavanger-logo.png",
+          "primaryColor": "#e52038",
+          "secondaryColor": "#f0f0f0"
+        },
+        "language": {
+          "default": "nb",
+          "available": ["nb", "en"]
+        },
+        "contact": {
+          "email": "post@stavanger.kommune.no",
+          "phone": "+47 51 50 70 00"
+        }
+      },
+      "createdAt": "2025-04-05T12:45:00.000Z",
+      "updatedAt": "2025-09-15T14:20:00.000Z",
+      "createdBy": "admin-003"
+    }
+  ],
+  "terms": [
+    {
+      "id": "term-001",
+      "name": "Standard vilkår",
+      "description": "Standard vilkår for alle skjema",
+      "version": "1.0.0",
+      "status": "active",
+      "content": "Brukeren bekrefter at opplysningene er riktige og fullstendige.",
+      "appliesTo": "all_forms",
+      "createdAt": "2025-01-15T09:00:00.000Z",
+      "updatedAt": "2025-01-15T09:00:00.000Z",
+      "createdBy": "admin-001"
+    },
+    {
+      "id": "term-002",
+      "name": "Personvernbestemmelser",
+      "description": "Personvernbestemmelser for skjema som inneholder personopplysninger",
+      "version": "2.1.0",
+      "status": "active",
+      "content": "Opplysningene brukes i henhold til personopplysningsloven og vil kun brukes til formålet med skjemaet.",
+      "appliesTo": "forms_with_personal_data",
+      "createdAt": "2025-02-20T10:15:00.000Z",
+      "updatedAt": "2025-06-10T11:30:00.000Z",
+      "createdBy": "admin-002"
+    },
+    {
+      "id": "term-003",
+      "name": "Søknadsvilkår",
+      "description": "Spesifikke vilkår for søknadsskjema",
+      "version": "1.2.0",
+      "status": "draft",
+      "content": "Søker må oppfylle visse krav for å være kvalifisert for tjenesten.",
+      "appliesTo": "application_forms",
+      "createdAt": "2025-03-10T11:30:00.000Z",
+      "updatedAt": "2025-03-15T14:20:00.000Z",
+      "createdBy": "admin-001"
+    },
+    {
+      "id": "term-004",
+      "name": "Anmeldelsesvilkår",
+      "description": "Vilkår for anmeldelser og rapportering",
+      "version": "1.0.0",
+      "status": "active",
+      "content": "Anmeldelsen må være sannferdig og basert på faktiske hendelser.",
+      "appliesTo": "report_forms",
+      "createdAt": "2025-04-05T12:45:00.000Z",
+      "updatedAt": "2025-04-05T12:45:00.000Z",
+      "createdBy": "admin-003"
+    }
+  ],
+  "roles": [
+    {
+      "id": "role-001",
+      "name": "Systemadministrator",
+      "description": "Full tilgang til alle funksjoner i systemet",
+      "level": "system",
+      "permissions": [
+        "system:manage_tenants",
+        "system:manage_users",
+        "system:manage_roles",
+        "system:manage_templates",
+        "system:manage_categories",
+        "system:manage_terms",
+        "forms:read_all",
+        "forms:write_all",
+        "forms:delete_all",
+        "submissions:read_all",
+        "submissions:process_all"
+      ],
+      "createdAt": "2025-01-15T09:00:00.000Z",
+      "updatedAt": "2025-01-15T09:00:00.000Z",
+      "createdBy": "admin-001"
+    },
+    {
+      "id": "role-002",
+      "name": "Leietakaradministrator",
+      "description": "Administratorrettigheter for en spesifikk leietaker",
+      "level": "tenant",
+      "permissions": [
+        "tenant:manage_forms",
+        "tenant:manage_templates",
+        "tenant:manage_categories",
+        "tenant:manage_terms",
+        "tenant:manage_users",
+        "forms:read",
+        "forms:write",
+        "forms:delete",
+        "submissions:read",
+        "submissions:process"
+      ],
+      "createdAt": "2025-01-15T09:00:00.000Z",
+      "updatedAt": "2025-01-15T09:00:00.000Z",
+      "createdBy": "admin-001"
+    },
+    {
+      "id": "role-003",
+      "name": "Skjemaredaktør",
+      "description": "Kan opprette og redigere skjema, men ikke administrere systemet",
+      "level": "tenant",
+      "permissions": [
+        "forms:read",
+        "forms:write",
+        "forms:preview",
+        "submissions:read",
+        "templates:read",
+        "templates:use"
+      ],
+      "createdAt": "2025-01-15T09:00:00.000Z",
+      "updatedAt": "2025-01-15T09:00:00.000Z",
+      "createdBy": "admin-001"
+    },
+    {
+      "id": "role-004",
+      "name": "Skjemautfyller",
+      "description": "Kan fylle ut og sende inn skjema",
+      "level": "form",
+      "permissions": [
+        "forms:fill",
+        "forms:submit",
+        "submissions:read_own"
+      ],
+      "createdAt": "2025-01-15T09:00:00.000Z",
+      "updatedAt": "2025-01-15T09:00:00.000Z",
+      "createdBy": "admin-001"
+    }
+  ]
+}

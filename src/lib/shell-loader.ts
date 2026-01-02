@@ -15,13 +15,13 @@ const shellSpecFiles = import.meta.glob('/product/shell/*.md', {
 // Load shell components lazily
 const shellComponentModules = import.meta.glob('/src/shell/components/*.tsx') as Record<
   string,
-  () => Promise<{ default: ComponentType }>
+  () => Promise<{ default: ComponentType<any> }>
 >
 
 // Load shell preview component lazily
 const shellPreviewModules = import.meta.glob('/src/shell/*.tsx') as Record<
   string,
-  () => Promise<{ default: ComponentType }>
+  () => Promise<{ default: ComponentType<any> }>
 >
 
 /**
@@ -87,14 +87,7 @@ export function parseShellSpec(md: string): ShellSpec | null {
  */
 export function hasShellComponents(): boolean {
   // Check if AppShell.tsx exists
-  const exists = '/src/shell/components/AppShell.tsx' in shellComponentModules
-  // Debug: log available shell components
-  console.log('[Shell] hasShellComponents check:', {
-    exists,
-    availableComponents: Object.keys(shellComponentModules),
-    lookingFor: '/src/shell/components/AppShell.tsx'
-  })
-  return exists
+  return '/src/shell/components/AppShell.tsx' in shellComponentModules
 }
 
 /**
@@ -112,21 +105,21 @@ export function loadShellComponent(
  * First tries to load ShellWrapper (designed for wrapping arbitrary content)
  * Falls back to AppShell if ShellWrapper doesn't exist
  */
-export function loadAppShell(): (() => Promise<{ default: ComponentType<{ children?: ReactNode }> }>) | null {
+export function loadAppShell(): (() => Promise<{ default: ComponentType<any> }>) | null {
   // First try ShellWrapper - a component specifically designed to wrap content
   const wrapperPath = '/src/shell/components/ShellWrapper.tsx'
   if (wrapperPath in shellComponentModules) {
-    return shellComponentModules[wrapperPath] as (() => Promise<{ default: ComponentType<{ children?: ReactNode }> }>)
+    return shellComponentModules[wrapperPath] as (() => Promise<{ default: ComponentType<any> }>)
   }
   // Fall back to AppShell
   const path = '/src/shell/components/AppShell.tsx'
-  return shellComponentModules[path] as (() => Promise<{ default: ComponentType<{ children?: ReactNode }> }>) || null
+  return shellComponentModules[path] as (() => Promise<{ default: ComponentType<any> }>) || null
 }
 
 /**
  * Load shell preview wrapper dynamically
  */
-export function loadShellPreview(): (() => Promise<{ default: ComponentType }>) | null {
+export function loadShellPreview(): (() => Promise<{ default: ComponentType<any> }>) | null {
   return shellPreviewModules['/src/shell/ShellPreview.tsx'] || null
 }
 

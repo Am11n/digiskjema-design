@@ -51,16 +51,34 @@ export interface DataModel {
 // Design System
 // =============================================================================
 
+export interface ColorScale {
+  [key: string]: string;
+}
+
 export interface ColorTokens {
-  primary: string
-  secondary: string
-  neutral: string
+  primary: ColorScale;
+  secondary: ColorScale;
+  neutral: ColorScale;
+  success?: ColorScale;
+  warning?: ColorScale;
+  error?: ColorScale;
 }
 
 export interface TypographyTokens {
-  heading: string
-  body: string
-  mono: string
+  fontFamilies?: {
+    heading: string;
+    body: string;
+    mono: string;
+  };
+  fontSizes?: {
+    [key: string]: string;
+  };
+  fontWeights?: {
+    [key: string]: number;
+  };
+  lineHeights?: {
+    [key: string]: string;
+  };
 }
 
 export interface DesignSystem {

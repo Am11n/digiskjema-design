@@ -1,0 +1,276 @@
+import React from 'react';
+import InsightsDashboard from './components/InsightsDashboard';
+import type { IInsightsDashboardProps } from '../../../product/sections/innsikt-analyser-tilgjengelighet-spr-k/types';
+
+// Sample data for the preview
+const sampleData: IInsightsDashboardProps = {
+  kpis: [
+    {
+      id: "totalViews",
+      title: "Total Views",
+      value: 24589,
+      change: 12.5,
+      changeType: "positive",
+      description: "Total form views in selected period"
+    },
+    {
+      id: "formsStarted",
+      title: "Forms Started",
+      value: 8456,
+      change: 5.3,
+      changeType: "positive",
+      description: "Number of forms started"
+    },
+    {
+      id: "formsSubmitted",
+      title: "Forms Submitted",
+      value: 7234,
+      change: 8.7,
+      changeType: "positive",
+      description: "Number of successfully submitted forms"
+    },
+    {
+      id: "formsFailed",
+      title: "Forms Failed",
+      value: 122,
+      change: -3.2,
+      changeType: "negative",
+      description: "Number of failed form submissions"
+    },
+    {
+      id: "avgCompletion",
+      title: "Avg. Completion",
+      value: 85.6,
+      change: 2.1,
+      changeType: "positive",
+      description: "Average form completion rate (%)"
+    },
+    {
+      id: "activeUsers",
+      title: "Active Users",
+      value: 1423,
+      change: 7.8,
+      changeType: "positive",
+      description: "Unique users in selected period"
+    }
+  ],
+  series: [
+    { date: "2026-01-01", views: 420, starts: 380, submissions: 320, failures: 12 },
+    { date: "2026-01-02", views: 380, starts: 340, submissions: 290, failures: 8 },
+    { date: "2026-01-03", views: 510, starts: 450, submissions: 390, failures: 15 },
+    { date: "2026-01-04", views: 450, starts: 400, submissions: 340, failures: 10 },
+    { date: "2026-01-05", views: 620, starts: 550, submissions: 480, failures: 18 },
+    { date: "2026-01-06", views: 580, starts: 520, submissions: 460, failures: 14 },
+    { date: "2026-01-07", views: 710, starts: 630, submissions: 540, failures: 22 },
+    { date: "2026-01-08", views: 650, starts: 580, submissions: 510, failures: 16 },
+    { date: "2026-01-09", views: 490, starts: 440, submissions: 380, failures: 11 },
+    { date: "2026-01-10", views: 530, starts: 470, submissions: 410, failures: 13 },
+    { date: "2026-01-11", views: 670, starts: 600, submissions: 530, failures: 19 },
+    { date: "2026-01-12", views: 720, starts: 650, submissions: 580, failures: 21 },
+    { date: "2026-01-13", views: 590, starts: 520, submissions: 460, failures: 17 },
+    { date: "2026-01-14", views: 680, starts: 610, submissions: 540, failures: 20 },
+    { date: "2026-01-15", views: 750, starts: 680, submissions: 610, failures: 23 },
+    { date: "2026-01-16", views: 620, starts: 560, submissions: 490, failures: 15 },
+    { date: "2026-01-17", views: 540, starts: 480, submissions: 420, failures: 12 },
+    { date: "2026-01-18", views: 690, starts: 620, submissions: 550, failures: 18 },
+    { date: "2026-01-19", views: 730, starts: 660, submissions: 590, failures: 22 },
+    { date: "2026-01-20", views: 660, starts: 590, submissions: 520, failures: 16 },
+    { date: "2026-01-21", views: 580, starts: 520, submissions: 460, failures: 14 },
+    { date: "2026-01-22", views: 700, starts: 630, submissions: 560, failures: 19 },
+    { date: "2026-01-23", views: 640, starts: 570, submissions: 500, failures: 17 },
+    { date: "2026-01-24", views: 560, starts: 500, submissions: 440, failures: 13 },
+    { date: "2026-01-25", views: 720, starts: 650, submissions: 580, failures: 21 },
+    { date: "2026-01-26", views: 680, starts: 610, submissions: 540, failures: 18 },
+    { date: "2026-01-27", views: 610, starts: 550, submissions: 480, failures: 15 },
+    { date: "2026-01-28", views: 740, starts: 670, submissions: 600, failures: 22 },
+    { date: "2026-01-29", views: 690, starts: 620, submissions: 550, failures: 19 },
+    { date: "2026-01-30", views: 760, starts: 690, submissions: 620, failures: 24 }
+  ],
+  topForms: [
+    {
+      id: "form_001",
+      name: "Customer Feedback Form",
+      views: 1250,
+      starts: 980,
+      submissions: 870,
+      completionRate: 88.8,
+      lastUpdated: "2026-01-30"
+    },
+    {
+      id: "form_002",
+      name: "Employee Onboarding",
+      views: 980,
+      starts: 890,
+      submissions: 820,
+      completionRate: 92.1,
+      lastUpdated: "2026-01-29"
+    },
+    {
+      id: "form_003",
+      name: "Product Survey",
+      views: 870,
+      starts: 760,
+      submissions: 650,
+      completionRate: 85.5,
+      lastUpdated: "2026-01-28"
+    },
+    {
+      id: "form_004",
+      name: "Service Request",
+      views: 760,
+      starts: 680,
+      submissions: 600,
+      completionRate: 88.2,
+      lastUpdated: "2026-01-27"
+    },
+    {
+      id: "form_005",
+      name: "Event Registration",
+      views: 650,
+      starts: 580,
+      submissions: 520,
+      completionRate: 89.7,
+      lastUpdated: "2026-01-26"
+    },
+    {
+      id: "form_006",
+      name: "Support Ticket",
+      views: 580,
+      starts: 520,
+      submissions: 460,
+      completionRate: 88.5,
+      lastUpdated: "2026-01-25"
+    },
+    {
+      id: "form_007",
+      name: "Job Application",
+      views: 520,
+      starts: 450,
+      submissions: 390,
+      completionRate: 86.7,
+      lastUpdated: "2026-01-24"
+    },
+    {
+      id: "form_008",
+      name: "Vendor Agreement",
+      views: 450,
+      starts: 390,
+      submissions: 340,
+      completionRate: 87.2,
+      lastUpdated: "2026-01-23"
+    }
+  ],
+  a11y: [
+    {
+      id: "a11y_001",
+      severity: "critical",
+      area: "Form Input Labels",
+      recommendation: "Add proper labels to all form inputs for screen reader compatibility",
+      formsAffected: ["form_001", "form_003"],
+      status: "open"
+    },
+    {
+      id: "a11y_002",
+      severity: "high",
+      area: "Color Contrast",
+      recommendation: "Increase contrast ratio to meet WCAG 2.1 AA standards",
+      formsAffected: ["form_002", "form_005"],
+      status: "open"
+    },
+    {
+      id: "a11y_003",
+      severity: "medium",
+      area: "Focus Indicators",
+      recommendation: "Ensure visible focus indicators for keyboard navigation",
+      formsAffected: ["form_004", "form_006"],
+      status: "open"
+    },
+    {
+      id: "a11y_004",
+      severity: "low",
+      area: "Alt Text",
+      recommendation: "Add descriptive alt text to all images",
+      formsAffected: ["form_001", "form_007"],
+      status: "resolved"
+    },
+    {
+      id: "a11y_005",
+      severity: "high",
+      area: "Keyboard Navigation",
+      recommendation: "Fix keyboard trap in modal components",
+      formsAffected: ["form_003", "form_008"],
+      status: "open"
+    },
+    {
+      id: "a11y_006",
+      severity: "medium",
+      area: "Heading Structure",
+      recommendation: "Implement proper heading hierarchy (h1, h2, h3)",
+      formsAffected: ["form_002", "form_004"],
+      status: "open"
+    },
+    {
+      id: "a11y_007",
+      severity: "low",
+      area: "Form Validation",
+      recommendation: "Provide clear error messages for form validation",
+      formsAffected: ["form_005", "form_007"],
+      status: "resolved"
+    },
+    {
+      id: "a11y_008",
+      severity: "critical",
+      area: "Screen Reader Compatibility",
+      recommendation: "Add ARIA attributes to dynamic content",
+      formsAffected: ["form_006", "form_008"],
+      status: "open"
+    },
+    {
+      id: "a11y_009",
+      severity: "medium",
+      area: "Language Declaration",
+      recommendation: "Add language attribute to document and content",
+      formsAffected: ["form_001", "form_002"],
+      status: "open"
+    },
+    {
+      id: "a11y_010",
+      severity: "high",
+      area: "Link Descriptions",
+      recommendation: "Provide descriptive link text instead of generic 'click here'",
+      formsAffected: ["form_003", "form_004", "form_005"],
+      status: "open"
+    }
+  ],
+  languages: {
+    nb: {
+      percentage: 65.2,
+      count: 16023
+    },
+    nn: {
+      percentage: 12.8,
+      count: 3145
+    },
+    en: {
+      percentage: 22.0,
+      count: 5421
+    },
+    total: 24589
+  },
+  onFilterChange: (filters) => {
+    console.log("Filter changed:", filters);
+  },
+  onExport: (format) => {
+    console.log("Exporting as:", format);
+  }
+};
+
+const InsightsDashboardPreview: React.FC = () => {
+  return (
+    <div className="p-4 max-w-7xl mx-auto">
+      <InsightsDashboard {...sampleData} />
+    </div>
+  );
+};
+
+export default InsightsDashboardPreview;
