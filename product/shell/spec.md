@@ -5,6 +5,7 @@
 The Digiskjema application uses a sidebar navigation layout with header, sidebar, and main content areas. This provides clear navigation for municipal employees managing forms while maintaining focus on the primary content.
 
 ## Navigation Structure
+
 - Skjema → Form listing and filling
 - Bygg skjema → Form builder
 - Malmaker → Template gallery
