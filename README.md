@@ -1,54 +1,93 @@
-<img width="1280" height="640" alt="Design OS" src="https://github.com/user-attachments/assets/a9c04258-7b9a-45b6-8475-3431cdf5dbe9" />
+# Digiskjema Design
 
-## The missing design process between your idea and your codebase.
+Digital form system for the Norwegian public sector. This project provides a comprehensive platform for creating, managing, and processing digital forms with focus on accessibility, multilingual support, and compliance with Norwegian public sector standards.
 
-[Design OS](https://buildermethods.com/design-os) is a product planning and design tool that helps you define your product vision, structure your data model, design your UI, and export production-ready components for implementation. Rather than jumping straight into code, you work through a guided process that captures what you're building and why—then hands off everything your coding agent needs to build it right.
+## Overview
 
-## The Problem
+Digiskjema Design is a complete solution for digital form handling in Norwegian public sector organizations. The system includes:
 
-AI coding tools are incredible at building fast. But the results often miss the mark. You describe what you want, the agent builds *something*, but it's not what you envisioned. The UI looks generic. Features get half-implemented. You spend as much time fixing and redirecting as you would have spent building.
+- **Form Creation**: Intuitive form builder for creating complex forms with conditional logic
+- **Form Management**: Administrative tools for managing templates, categories, tenants, and access
+- **Form Processing**: Secure submission and processing system with analytics
+- **Accessibility**: Full compliance with WCAG 2.1 AA standards
+- **Multilingual Support**: Norwegian Bokmål, Norwegian Nynorsk, and English support
+- **Analytics**: Insights dashboard for understanding usage patterns and accessibility
 
-**The core issue:** we're asking coding agents to figure out what to build *and* build it simultaneously. Design decisions get made on the fly, buried in code, impossible to adjust without starting over. There's no spec. No shared understanding. No source of truth for what "done" looks like.
+## Features
 
-## The Design OS Process
+### Form Building
+- Drag-and-drop form builder
+- Conditional logic and validation rules
+- Integration with public sector data sources
+- Template management system
 
-Design OS powers a guided design and architecture process. You + AI, working together through structured steps:
+### Administrative Tools
+- Tenant management for different organizations
+- Category and template organization
+- Role-based access control
+- User management
 
-1. **Product Planning** — Define your vision, break down your roadmap, and model your data
-2. **Design System** — Choose colors, typography, and design your application shell
-3. **Section Design** — For each feature area: specify requirements, generate sample data, and design the screens
-4. **Export** — Generate a complete handoff package for implementation
+### Analytics & Insights
+- Usage statistics and KPIs
+- Accessibility compliance monitoring
+- Language usage analytics
+- Form performance metrics
 
-Each step is a conversation. The AI asks questions, you provide direction, and together you shape a product that matches your vision—before any implementation begins.
+### Technical Features
+- Responsive design for all devices
+- WCAG 2.1 AA compliance
+- Norwegian language support (nb, nn, en)
+- Secure data handling
+- API-first architecture
 
----
+## Architecture
 
-## Documentation & Installation
+The system follows a modular architecture with distinct sections:
 
-Docs, installation, usage, & best practices 👉 [It's all here](https://buildermethods.com/design-os)
+- **Form Section**: Handles form listing, filling out, and submission
+- **Form Builder**: Tools for creating and publishing forms
+- **Administration**: Management of templates, categories, tenants, and access control
+- **Insights**: Analytics and monitoring tools
 
----
+## Getting Started
 
-## Support, Training & Community
+### Prerequisites
+- Node.js 18+
+- npm or yarn package manager
 
-For official support, training, and community as you use Design OS—for yourself or with your team, consider joining _Builder Methods Pro_. You'll get access to Brian Casel (the creator) for questions, a community of builders using Design OS, plus all Builder Methods workshops and training on AI-first development.
+### Installation
+1. Clone the repository
+2. Install dependencies: `npm install`
+3. Start development server: `npm run dev`
 
-👉 [Join Builder Methods Pro](https://buildermethods.com/pro)
+### Development
+- The project uses React 19 with TypeScript
+- Tailwind CSS for styling
+- Lucide React for icons
+- Vite for build tooling
 
----
+## Sections
 
-## Follow updates & releases
+### Form (Skjema)
+Complete form experience from listing to submission, including accessibility and authentication features.
 
-Read the [changelog](CHANGELOG.md)
+### Form Builder (Skjemabygger)
+Full-featured form builder with logic, validation, and publishing capabilities.
 
-[Subscribe to be notified of major new releases of Design OS](https://buildermethods.com/design-os)
+### Administration (Administrasjon)
+Administrative functions for managing templates, categories, tenants, conditions, and access control.
 
----
+### Insights (Innsikt)
+Analytics tools for understanding usage patterns, accessibility compliance, and language usage.
 
-## Created by Brian Casel @ Builder Methods
+## Contributing
 
-Created by Brian Casel, the creator of [Builder Methods](https://buildermethods.com), where Brian helps professional software developers and teams build with AI.
+We welcome contributions to improve Digiskjema Design. Please follow our contribution guidelines.
 
-Get Brian's free resources on building with AI:
-- [Builder Briefing newsletter](https://buildermethods.com)
-- [YouTube](https://youtube.com/@briancasel)
+## License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+## Support
+
+For support, please contact the development team or open an issue in the repository.
