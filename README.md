@@ -85,9 +85,7 @@ Analytics tools for understanding usage patterns, accessibility compliance, and 
 We welcome contributions to improve Digiskjema Design. Please follow our contribution guidelines.
 
 ## License
-
 This project is licensed under the MIT License - see the LICENSE file for details.
 
 ## Support
-
 For support, please contact the development team or open an issue in the repository.
