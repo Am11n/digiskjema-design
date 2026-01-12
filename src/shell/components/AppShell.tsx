@@ -45,44 +45,103 @@ function AppShell({ children, navigationItems = [], user, onNavigate, onLogout, 
   const isActive = (path: string) => location.pathname === path || location.pathname.startsWith(path + '/');
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div style={{ minHeight: '100vh', backgroundColor: 'var(--fds-gray-50, #f0f0f0)' }}>
       {/* Header */}
-      <header className="sticky top-0 z-50 bg-white bg-opacity-95 backdrop-blur border-b border-gray-200">
-        <div className="px-6 py-4 flex items-center justify-between">
-          <div className="flex items-center">
+      <header style={{
+        position: 'sticky',
+        top: 0,
+        zIndex: 50,
+        backgroundColor: 'rgba(255, 255, 255, 0.95)',
+        backdropFilter: 'blur(8px)',
+        borderBottom: '1px solid var(--fds-gray-200, #dbdbdc)'
+      }}>
+        <div style={{
+          padding: 'var(--fds-spacing-l, 1rem) var(--fds-spacing-xl, 1.5rem)',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between'
+        }}>
+          <div style={{ display: 'flex', alignItems: 'center' }}>
             <button 
-              className="lg:hidden mr-4 p-2 rounded-md hover:bg-gray-100"
+              style={{
+                display: 'block',
+                marginRight: 'var(--fds-spacing-m, 0.75rem)',
+                padding: 'var(--fds-spacing-xs, 0.5rem)',
+                borderRadius: 'var(--fds-border-radius-md, 0.375rem)',
+                border: 'none',
+                background: 'transparent',
+                cursor: 'pointer'
+              }}
+              onMouseEnter={(e) => e.currentTarget.style.backgroundColor = 'var(--fds-gray-100, #f7f7f7)'}
+              onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'transparent'}
               onClick={() => setSidebarOpen(!sidebarOpen)}
+              className="lg:hidden"
             >
               {sidebarOpen ? <X size={20} /> : <Menu size={20} />}
             </button>
-            <h1 className="text-xl font-bold text-blue-600">{user?.name || 'Digiskjema'}</h1>
+            <h1 style={{
+              fontSize: 'var(--fds-font-size-xl, 1.25rem)',
+              fontWeight: 'var(--fds-font-weight-bold, 700)',
+              color: 'var(--fds-blue-60, #0066cc)',
+              fontFamily: 'var(--fds-font-family, system-ui, sans-serif)'
+            }}>{user?.name || 'Digiskjema'}</h1>
           </div>
           
-          <div className="flex items-center space-x-4">
+          <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--fds-spacing-m, 0.75rem)' }}>
             <UserMenu user={user} onLogout={onLogout} />
           </div>
         </div>
       </header>
 
-      <div className="flex">
+      <div style={{ display: 'flex' }}>
         {/* Sidebar */}
         <aside 
-          className={`fixed lg:sticky top-16 left-0 h-[calc(100vh-4rem)] w-72 bg-white bg-opacity-95 backdrop-blur border-r border-gray-200 z-40 transform ${
-            sidebarOpen ? 'translate-x-0' : '-translate-x-full'
-          } lg:translate-x-0 transition-transform duration-300 ease-in-out`}
+          style={{
+            position: 'fixed',
+            top: '4rem',
+            left: 0,
+            height: 'calc(100vh - 4rem)',
+            width: '18rem',
+            backgroundColor: 'rgba(255, 255, 255, 0.95)',
+            backdropFilter: 'blur(8px)',
+            borderRight: '1px solid var(--fds-gray-200, #dbdbdc)',
+            zIndex: 40,
+            transform: sidebarOpen ? 'translateX(0)' : 'translateX(-100%)',
+            transition: 'transform 300ms ease-in-out'
+          }}
+          className="lg:sticky lg:translate-x-0"
         >
-          <nav className="p-4">
-            <ul className="space-y-1">
+          <nav style={{ padding: 'var(--fds-spacing-m, 0.75rem)' }}>
+            <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: 'var(--fds-spacing-xxs, 0.25rem)' }}>
               {navItems.map((item) => (
                 <li key={item.id}>
                   <Link
                     to={item.path}
-                    className={`flex items-center w-full p-3 rounded-lg text-sm transition-colors ${
-                      isActive(item.path)
-                        ? 'bg-blue-50 border-l-4 border-blue-600 text-blue-600 font-medium transform translate-x-1'
-                        : 'hover:bg-gray-100'
-                    }`}
+                    style={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      width: '100%',
+                      padding: 'var(--fds-spacing-s, 0.5rem) var(--fds-spacing-m, 0.75rem)',
+                      borderRadius: 'var(--fds-border-radius-lg, 0.5rem)',
+                      fontSize: 'var(--fds-font-size-sm, 0.875rem)',
+                      textDecoration: 'none',
+                      color: isActive(item.path) ? 'var(--fds-blue-60, #0066cc)' : 'var(--fds-text-default, #1f2021)',
+                      fontWeight: isActive(item.path) ? 'var(--fds-font-weight-medium, 500)' : 'var(--fds-font-weight-regular, 400)',
+                      backgroundColor: isActive(item.path) ? 'var(--fds-blue-50, #e7f3fa)' : 'transparent',
+                      borderLeft: isActive(item.path) ? '4px solid var(--fds-blue-60, #0066cc)' : 'none',
+                      transform: isActive(item.path) ? 'translateX(4px)' : 'none',
+                      transition: 'all 200ms ease'
+                    }}
+                    onMouseEnter={(e) => {
+                      if (!isActive(item.path)) {
+                        e.currentTarget.style.backgroundColor = 'var(--fds-gray-100, #f7f7f7)';
+                      }
+                    }}
+                    onMouseLeave={(e) => {
+                      if (!isActive(item.path)) {
+                        e.currentTarget.style.backgroundColor = 'transparent';
+                      }
+                    }}
                   >
                     {item.label}
                   </Link>
@@ -95,14 +154,24 @@ function AppShell({ children, navigationItems = [], user, onNavigate, onLogout, 
         {/* Overlay for mobile */}
         {sidebarOpen && (
           <div 
-            className="fixed inset-0 bg-black bg-opacity-50 z-30 lg:hidden"
+            style={{
+              position: 'fixed',
+              inset: 0,
+              backgroundColor: 'rgba(0, 0, 0, 0.5)',
+              zIndex: 30
+            }}
+            className="lg:hidden"
             onClick={() => setSidebarOpen(false)}
           />
         )}
 
         {/* Main Content */}
-        <main className="flex-1 p-8 lg:ml-0">
-          <div className="max-w-6xl mx-auto">
+        <main style={{
+          flex: 1,
+          padding: 'var(--fds-spacing-2xl, 2rem)',
+          marginLeft: 0
+        }} className="lg:ml-0">
+          <div style={{ maxWidth: '72rem', margin: '0 auto' }}>
             {children}
           </div>
         </main>

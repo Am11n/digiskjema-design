@@ -7,9 +7,13 @@ function Card({ className, ...props }: React.ComponentProps<"div">) {
     <div
       data-slot="card"
       className={cn(
-        "bg-card text-card-foreground flex flex-col gap-6 rounded-xl border py-6 shadow-sm",
+        "bg-white text-[var(--fds-text-default,#1f2021)] flex flex-col gap-6 rounded-xl border border-[var(--fds-gray-200,#dbdbdc)] py-6 shadow-sm",
         className
       )}
+      style={{
+        fontFamily: 'var(--fds-font-family, system-ui, sans-serif)',
+        ...props.style
+      }}
       {...props}
     />
   )
@@ -32,7 +36,14 @@ function CardTitle({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
       data-slot="card-title"
-      className={cn("leading-none font-semibold", className)}
+      className={cn("leading-none", className)}
+      style={{
+        fontWeight: 'var(--fds-font-weight-bold, 700)',
+        fontSize: 'var(--fds-font-size-lg, 1.125rem)',
+        color: 'var(--fds-text-default, #1f2021)',
+        fontFamily: 'var(--fds-font-family, system-ui, sans-serif)',
+        ...props.style
+      }}
       {...props}
     />
   )
@@ -42,7 +53,13 @@ function CardDescription({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
       data-slot="card-description"
-      className={cn("text-muted-foreground text-sm", className)}
+      className={cn("text-sm", className)}
+      style={{
+        color: 'var(--fds-text-subtle, #717274)',
+        fontSize: 'var(--fds-font-size-sm, 0.875rem)',
+        fontFamily: 'var(--fds-font-family, system-ui, sans-serif)',
+        ...props.style
+      }}
       {...props}
     />
   )

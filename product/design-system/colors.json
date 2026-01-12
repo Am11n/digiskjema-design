@@ -1,47 +1,50 @@
 {
-  "primary": {
-    "50": "#eff6ff",
-    "100": "#dbeafe",
-    "200": "#bfdbfe",
-    "300": "#93c5fd",
-    "400": "#60a5fa",
-    "500": "#3b82f6",
-    "600": "#2563eb",
-    "700": "#1d4ed8",
-    "800": "#1e40af",
-    "900": "#1e3a8a"
+  "note": "This product uses Digdir Design System (designsystemet.no) tokens. The tokens below map to Digdir CSS custom properties.",
+  "digdir": {
+    "primary": {
+      "60": "#0066cc",
+      "70": "#00315d",
+      "50": "#e7f3fa"
+    },
+    "success": {
+      "60": "#068400",
+      "70": "#045c00"
+    },
+    "danger": {
+      "60": "#d8000c",
+      "70": "#a20009",
+      "100": "#fbd3d3"
+    },
+    "warning": {
+      "50": "#f2c402",
+      "60": "#b99300"
+    },
+    "neutral": {
+      "50": "#f0f0f0",
+      "100": "#f7f7f7",
+      "200": "#dbdbdc",
+      "300": "#c0c1c2"
+    },
+    "text": {
+      "default": "#1f2021",
+      "subtle": "#717274"
+    }
   },
-  "secondary": {
-    "50": "#f5f3ff",
-    "100": "#ede9fe",
-    "200": "#ddd6fe",
-    "300": "#c4b5fd",
-    "400": "#a78bfa",
-    "500": "#8b5cf6",
-    "600": "#7c3aed",
-    "700": "#6d28d9",
-    "800": "#5b21b6",
-    "900": "#4c1d95"
-  },
-  "neutral": {
-    "50": "#f9fafb",
-    "100": "#f3f4f6",
-    "200": "#e5e7eb",
-    "300": "#d1d5db",
-    "400": "#9ca3af",
-    "500": "#6b7280",
-    "600": "#4b5563",
-    "700": "#374151",
-    "800": "#1f2937",
-    "900": "#111827"
-  },
-  "success": {
-    "500": "#10b981"
-  },
-  "warning": {
-    "500": "#f59e0b"
-  },
-  "error": {
-    "500": "#ef4444"
+  "tokens": {
+    "primary": "var(--fds-blue-60)",
+    "primaryHover": "var(--fds-blue-70)",
+    "primaryLight": "var(--fds-blue-50)",
+    "success": "var(--fds-green-60)",
+    "successDark": "var(--fds-green-70)",
+    "danger": "var(--fds-red-60)",
+    "dangerDark": "var(--fds-red-70)",
+    "dangerLight": "var(--fds-red-100)",
+    "warning": "var(--fds-yellow-50)",
+    "warningDark": "var(--fds-yellow-60)",
+    "background": "var(--fds-gray-50)",
+    "surface": "white",
+    "border": "var(--fds-gray-200)",
+    "textDefault": "var(--fds-text-default)",
+    "textSubtle": "var(--fds-text-subtle)"
   }
 }

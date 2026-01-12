@@ -1,31 +1,35 @@
 {
-  "fontFamilies": {
-    "heading": "Inter",
-    "body": "Inter",
-    "mono": "JetBrains Mono"
+  "note": "This product uses Digdir Design System (designsystemet.no) typography tokens. The tokens below map to Digdir CSS custom properties.",
+  "digdir": {
+    "fontFamily": "System font stack (--fds-font-family)",
+    "fontSizes": {
+      "xs": "var(--fds-font-size-xs)",
+      "sm": "var(--fds-font-size-sm)",
+      "md": "var(--fds-font-size-md)",
+      "lg": "var(--fds-font-size-lg)",
+      "xl": "var(--fds-font-size-xl)",
+      "2xl": "var(--fds-font-size-2xl)",
+      "3xl": "var(--fds-font-size-3xl)"
+    },
+    "fontWeights": {
+      "regular": "var(--fds-font-weight-regular)",
+      "medium": "var(--fds-font-weight-medium)",
+      "bold": "var(--fds-font-weight-bold)",
+      "extrabold": "var(--fds-font-weight-extrabold)"
+    }
   },
-  "fontSizes": {
-    "xs": "0.75rem",
-    "sm": "0.875rem",
-    "base": "1rem",
-    "lg": "1.125rem",
-    "xl": "1.25rem",
-    "2xl": "1.5rem",
-    "3xl": "1.875rem",
-    "4xl": "2.25rem",
-    "5xl": "3rem",
-    "6xl": "3.75rem"
-  },
-  "fontWeights": {
-    "regular": 400,
-    "medium": 500,
-    "semibold": 600,
-    "bold": 700
-  },
-  "lineHeights": {
-    "tight": "1.25",
-    "snug": "1.375",
-    "normal": "1.5",
-    "relaxed": "1.625"
+  "tokens": {
+    "fontFamily": "var(--fds-font-family)",
+    "fontSizeXs": "var(--fds-font-size-xs)",
+    "fontSizeSm": "var(--fds-font-size-sm)",
+    "fontSizeMd": "var(--fds-font-size-md)",
+    "fontSizeLg": "var(--fds-font-size-lg)",
+    "fontSizeXl": "var(--fds-font-size-xl)",
+    "fontSize2xl": "var(--fds-font-size-2xl)",
+    "fontSize3xl": "var(--fds-font-size-3xl)",
+    "fontWeightRegular": "var(--fds-font-weight-regular)",
+    "fontWeightMedium": "var(--fds-font-weight-medium)",
+    "fontWeightBold": "var(--fds-font-weight-bold)",
+    "fontWeightExtrabold": "var(--fds-font-weight-extrabold)"
   }
 }

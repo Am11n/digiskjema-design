@@ -79,15 +79,23 @@ export function FormList({ forms, categories, onOpen, onFilterChange, currentUse
   };
 
   return (
-    <div className="space-y-6">
-      <div className="flex flex-col sm:flex-row gap-4">
-        <div className="relative flex-1">
-          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-stone-400 dark:text-stone-500 w-4 h-4" />
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--fds-spacing-xl, 1.5rem)' }}>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--fds-spacing-m, 0.75rem)' }} className="sm:flex-row">
+        <div style={{ position: 'relative', flex: 1 }}>
+          <Search style={{
+            position: 'absolute',
+            left: 'var(--fds-spacing-s, 0.5rem)',
+            top: '50%',
+            transform: 'translateY(-50%)',
+            color: 'var(--fds-text-subtle, #717274)',
+            width: '1rem',
+            height: '1rem'
+          }} />
           <Input
             placeholder="Søk i skjema..."
             value={search}
             onChange={(e) => handleSearchChange(e.target.value)}
-            className="pl-10"
+            style={{ paddingLeft: '2.5rem' }}
           />
         </div>
         
@@ -121,43 +129,79 @@ export function FormList({ forms, categories, onOpen, onFilterChange, currentUse
       ) : (
         <div className="grid gap-4">
           {filteredForms.map(form => (
-            <Card key={form.id} className="border-stone-200 dark:border-stone-700 hover:shadow-md transition-shadow">
-              <CardHeader className="pb-3">
-                <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2">
-                  <div className="flex-1">
-                    <CardTitle className="text-lg text-stone-900 dark:text-stone-100">
+            <Card 
+              key={form.id} 
+              style={{
+                borderColor: 'var(--fds-gray-200, #dbdbdc)',
+                transition: 'box-shadow 200ms ease'
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.boxShadow = 'var(--fds-shadow-md, 0 4px 6px -1px rgba(0, 0, 0, 0.1))';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.boxShadow = 'var(--fds-shadow-sm, 0 1px 2px 0 rgba(0, 0, 0, 0.05))';
+              }}
+            >
+              <CardHeader style={{ paddingBottom: 'var(--fds-spacing-s, 0.5rem)' }}>
+                <div style={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  gap: 'var(--fds-spacing-xs, 0.5rem)',
+                  alignItems: 'flex-start',
+                  justifyContent: 'space-between'
+                }} className="sm:flex-row sm:items-start sm:justify-between">
+                  <div style={{ flex: 1 }}>
+                    <CardTitle style={{
+                      fontSize: 'var(--fds-font-size-lg, 1.125rem)',
+                      color: 'var(--fds-text-default, #1f2021)',
+                      marginBottom: 'var(--fds-spacing-xxs, 0.25rem)'
+                    }}>
                       {form.title}
                     </CardTitle>
-                    <p className="text-stone-600 dark:text-stone-400 mt-1 text-sm">
+                    <p style={{
+                      color: 'var(--fds-text-subtle, #717274)',
+                      marginTop: 'var(--fds-spacing-xxs, 0.25rem)',
+                      fontSize: 'var(--fds-font-size-sm, 0.875rem)'
+                    }}>
                       {form.description}
                     </p>
                   </div>
                   
-                  <div className="flex flex-wrap gap-2">
+                  <div style={{ display: 'flex', flexWrap: 'wrap', gap: 'var(--fds-spacing-xs, 0.5rem)' }}>
                     <Badge 
                       variant={form.requiresLogin ? "default" : "secondary"}
-                      className="text-xs"
                     >
                       {form.requiresLogin ? "Krever innlogging" : "Anonym"}
                     </Badge>
-                    <Badge 
-                      variant="outline"
-                      className="text-xs border-stone-300 dark:border-stone-600"
-                    >
+                    <Badge variant="outline">
                       {form.status}
                     </Badge>
                   </div>
                 </div>
                 
-                <div className="flex flex-wrap gap-2 mt-2 text-xs text-stone-500 dark:text-stone-400">
+                <div style={{
+                  display: 'flex',
+                  flexWrap: 'wrap',
+                  gap: 'var(--fds-spacing-xs, 0.5rem)',
+                  marginTop: 'var(--fds-spacing-xs, 0.5rem)',
+                  fontSize: 'var(--fds-font-size-xs, 0.75rem)',
+                  color: 'var(--fds-text-subtle, #717274)'
+                }}>
                   <span>{form.estimatedTime} min</span>
                   {form.deadline && <span>Frist: {new Date(form.deadline).toLocaleDateString()}</span>}
                 </div>
               </CardHeader>
               
-              <CardContent className="pb-4">
-                <div className="flex justify-between items-center">
-                  <span className="text-sm text-stone-500 dark:text-stone-400">
+              <CardContent style={{ paddingBottom: 'var(--fds-spacing-m, 0.75rem)' }}>
+                <div style={{
+                  display: 'flex',
+                  justifyContent: 'space-between',
+                  alignItems: 'center'
+                }}>
+                  <span style={{
+                    fontSize: 'var(--fds-font-size-sm, 0.875rem)',
+                    color: 'var(--fds-text-subtle, #717274)'
+                  }}>
                     {categories.find(c => c.id === form.categoryId)?.name}
                   </span>
                   

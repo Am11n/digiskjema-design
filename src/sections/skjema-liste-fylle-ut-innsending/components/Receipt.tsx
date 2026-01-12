@@ -18,49 +18,96 @@ interface ReceiptProps {
 
 export function Receipt({ submission, onDownloadPdf, onBackToList }: ReceiptProps) {
   return (
-    <div className="space-y-6">
-      <div className="text-center space-y-4">
-        <div className="mx-auto w-16 h-16 bg-green-100 dark:bg-green-900/30 rounded-full flex items-center justify-center">
-          <CheckCircle className="w-8 h-8 text-green-600 dark:text-green-400" />
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--fds-spacing-xl, 1.5rem)' }}>
+      <div style={{ textAlign: 'center', display: 'flex', flexDirection: 'column', gap: 'var(--fds-spacing-m, 0.75rem)' }}>
+        <div style={{
+          margin: '0 auto',
+          width: '4rem',
+          height: '4rem',
+          backgroundColor: 'var(--fds-green-60, #068400)',
+          borderRadius: 'var(--fds-border-radius-full, 9999px)',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          opacity: 0.1
+        }}>
+          <CheckCircle style={{ width: '2rem', height: '2rem', color: 'var(--fds-green-60, #068400)', position: 'absolute' }} />
         </div>
         
         <div>
-          <h1 className="text-2xl font-bold text-stone-900 dark:text-stone-100">
+          <h1 style={{
+            fontSize: 'var(--fds-font-size-2xl, 1.5rem)',
+            fontWeight: 'var(--fds-font-weight-bold, 700)',
+            color: 'var(--fds-text-default, #1f2021)',
+            fontFamily: 'var(--fds-font-family, system-ui, sans-serif)'
+          }}>
             Skjema sendt inn
           </h1>
-          <p className="text-stone-600 dark:text-stone-400 mt-2">
+          <p style={{
+            color: 'var(--fds-text-subtle, #717274)',
+            marginTop: 'var(--fds-spacing-xs, 0.5rem)',
+            fontFamily: 'var(--fds-font-family, system-ui, sans-serif)'
+          }}>
             Takk for din innsending. Vi har mottatt skjemaet ditt.
           </p>
         </div>
       </div>
 
-      <Card className="border-stone-200 dark:border-stone-700 max-w-2xl mx-auto">
+      <Card style={{ borderColor: 'var(--fds-gray-200, #dbdbdc)', maxWidth: '42rem', margin: '0 auto' }}>
         <CardHeader>
-          <CardTitle className="text-lg text-stone-900 dark:text-stone-100">
+          <CardTitle style={{
+            fontSize: 'var(--fds-font-size-lg, 1.125rem)',
+            color: 'var(--fds-text-default, #1f2021)'
+          }}>
             Innsendingsdetaljer
           </CardTitle>
         </CardHeader>
-        <CardContent className="space-y-6">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <CardContent style={{ display: 'flex', flexDirection: 'column', gap: 'var(--fds-spacing-xl, 1.5rem)' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: 'var(--fds-spacing-xl, 1.5rem)' }}>
             <div>
-              <h3 className="text-sm font-medium text-stone-500 dark:text-stone-400 mb-2">Referansenummer</h3>
-              <p className="font-mono text-stone-900 dark:text-stone-100">
+              <h3 style={{
+                fontSize: 'var(--fds-font-size-sm, 0.875rem)',
+                fontWeight: 'var(--fds-font-weight-medium, 500)',
+                color: 'var(--fds-text-subtle, #717274)',
+                marginBottom: 'var(--fds-spacing-xs, 0.5rem)',
+                fontFamily: 'var(--fds-font-family, system-ui, sans-serif)'
+              }}>Referansenummer</h3>
+              <p style={{
+                fontFamily: 'monospace',
+                color: 'var(--fds-text-default, #1f2021)',
+                fontFamily: 'var(--fds-font-family, system-ui, sans-serif)'
+              }}>
                 {submission.referenceNumber}
               </p>
             </div>
             
             <div>
-              <h3 className="text-sm font-medium text-stone-500 dark:text-stone-400 mb-2">Innsendt</h3>
-              <p className="text-stone-900 dark:text-stone-100">
+              <h3 style={{
+                fontSize: 'var(--fds-font-size-sm, 0.875rem)',
+                fontWeight: 'var(--fds-font-weight-medium, 500)',
+                color: 'var(--fds-text-subtle, #717274)',
+                marginBottom: 'var(--fds-spacing-xs, 0.5rem)',
+                fontFamily: 'var(--fds-font-family, system-ui, sans-serif)'
+              }}>Innsendt</h3>
+              <p style={{
+                color: 'var(--fds-text-default, #1f2021)',
+                fontFamily: 'var(--fds-font-family, system-ui, sans-serif)'
+              }}>
                 {new Date(submission.submittedAt).toLocaleString('nb-NO')}
               </p>
             </div>
             
             <div>
-              <h3 className="text-sm font-medium text-stone-500 dark:text-stone-400 mb-2">Status</h3>
+              <h3 style={{
+                fontSize: 'var(--fds-font-size-sm, 0.875rem)',
+                fontWeight: 'var(--fds-font-weight-medium, 500)',
+                color: 'var(--fds-text-subtle, #717274)',
+                marginBottom: 'var(--fds-spacing-xs, 0.5rem)',
+                fontFamily: 'var(--fds-font-family, system-ui, sans-serif)'
+              }}>Status</h3>
               <Badge 
                 variant={submission.status === 'submitted' ? 'default' : 'secondary'}
-                className="capitalize"
+                style={{ textTransform: 'capitalize' }}
               >
                 {submission.status}
               </Badge>
@@ -69,15 +116,32 @@ export function Receipt({ submission, onDownloadPdf, onBackToList }: ReceiptProp
 
           <Separator />
 
-          <div className="space-y-4">
-            <h3 className="text-sm font-medium text-stone-500 dark:text-stone-400">Oppsummering</h3>
-            <div className="space-y-3">
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--fds-spacing-m, 0.75rem)' }}>
+            <h3 style={{
+              fontSize: 'var(--fds-font-size-sm, 0.875rem)',
+              fontWeight: 'var(--fds-font-weight-medium, 500)',
+              color: 'var(--fds-text-subtle, #717274)',
+              fontFamily: 'var(--fds-font-family, system-ui, sans-serif)'
+            }}>Oppsummering</h3>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--fds-spacing-s, 0.5rem)' }}>
               {Object.entries(submission.formData).map(([key, value]) => (
-                <div key={key} className="flex justify-between py-2 border-b border-stone-100 dark:border-stone-800">
-                  <span className="text-stone-600 dark:text-stone-400 capitalize">
+                <div key={key} style={{
+                  display: 'flex',
+                  justifyContent: 'space-between',
+                  padding: 'var(--fds-spacing-xs, 0.5rem) 0',
+                  borderBottom: '1px solid var(--fds-gray-200, #dbdbdc)'
+                }}>
+                  <span style={{
+                    color: 'var(--fds-text-subtle, #717274)',
+                    textTransform: 'capitalize',
+                    fontFamily: 'var(--fds-font-family, system-ui, sans-serif)'
+                  }}>
                     {key.replace(/([A-Z])/g, ' $1').trim()}
                   </span>
-                  <span className="text-stone-900 dark:text-stone-100">
+                  <span style={{
+                    color: 'var(--fds-text-default, #1f2021)',
+                    fontFamily: 'var(--fds-font-family, system-ui, sans-serif)'
+                  }}>
                     {String(value)}
                   </span>
                 </div>
@@ -87,21 +151,21 @@ export function Receipt({ submission, onDownloadPdf, onBackToList }: ReceiptProp
 
           <Separator />
 
-          <div className="flex flex-col sm:flex-row gap-3 pt-4">
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--fds-spacing-s, 0.5rem)', paddingTop: 'var(--fds-spacing-m, 0.75rem)' }} className="sm:flex-row">
             <Button 
               onClick={() => onDownloadPdf(submission.id)}
               variant="outline"
-              className="flex-1"
+              style={{ flex: 1 }}
             >
-              <Download className="w-4 h-4 mr-2" />
+              <Download style={{ width: '1rem', height: '1rem', marginRight: 'var(--fds-spacing-xs, 0.5rem)' }} />
               Last ned kvittering
             </Button>
             
             <Button 
               onClick={onBackToList}
-              className="flex-1"
+              style={{ flex: 1 }}
             >
-              <ArrowLeft className="w-4 h-4 mr-2" />
+              <ArrowLeft style={{ width: '1rem', height: '1rem', marginRight: 'var(--fds-spacing-xs, 0.5rem)' }} />
               Tilbake til oversikt
             </Button>
           </div>

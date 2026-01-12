@@ -1,5 +1,66 @@
 @import "tailwindcss";
 @import "tw-animate-css";
+/* Digdir Design System - Import for product components */
+@import "@digdir/designsystemet-css";
+
+/* Digdir Design System Fallback Tokens - Used as fallback if package tokens are not available */
+:root {
+  /* Colors */
+  --fds-blue-60: #0066cc;
+  --fds-blue-70: #00315d;
+  --fds-blue-50: #e7f3fa;
+  --fds-green-60: #068400;
+  --fds-green-70: #045c00;
+  --fds-red-60: #d8000c;
+  --fds-red-70: #a20009;
+  --fds-red-100: #fbd3d3;
+  --fds-yellow-50: #f2c402;
+  --fds-yellow-60: #b99300;
+  --fds-gray-50: #f0f0f0;
+  --fds-gray-100: #f7f7f7;
+  --fds-gray-200: #dbdbdc;
+  --fds-gray-300: #c0c1c2;
+  --fds-text-default: #1f2021;
+  --fds-text-subtle: #717274;
+  
+  /* Typography */
+  --fds-font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --fds-font-size-xs: 0.75rem;
+  --fds-font-size-sm: 0.875rem;
+  --fds-font-size-md: 1rem;
+  --fds-font-size-lg: 1.125rem;
+  --fds-font-size-xl: 1.25rem;
+  --fds-font-size-2xl: 1.5rem;
+  --fds-font-size-3xl: 1.875rem;
+  --fds-font-weight-regular: 400;
+  --fds-font-weight-medium: 500;
+  --fds-font-weight-bold: 700;
+  --fds-font-weight-extrabold: 800;
+  
+  /* Spacing */
+  --fds-spacing-xxs: 0.25rem;
+  --fds-spacing-xs: 0.5rem;
+  --fds-spacing-s: 0.5rem;
+  --fds-spacing-m: 0.75rem;
+  --fds-spacing-l: 1rem;
+  --fds-spacing-xl: 1.5rem;
+  --fds-spacing-2xl: 2rem;
+  --fds-spacing-3xl: 3rem;
+  --fds-spacing-4xl: 4rem;
+  
+  /* Border Radius */
+  --fds-border-radius-sm: 0.25rem;
+  --fds-border-radius-md: 0.375rem;
+  --fds-border-radius-lg: 0.5rem;
+  --fds-border-radius-xl: 0.75rem;
+  --fds-border-radius-full: 9999px;
+  
+  /* Shadows */
+  --fds-shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --fds-shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  --fds-shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  --fds-shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+}
 
 @custom-variant dark (&:is(.dark *));
 

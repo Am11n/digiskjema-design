@@ -140,17 +140,17 @@ export function FormFill({ form, submission, onSaveDraft, onSubmit, onValidate, 
         return (
           <div className="space-y-2">
             <Label htmlFor={field.id}>
-              {field.label} {field.required && <span className="text-red-500">*</span>}
+              {field.label} {field.required && <span style={{ color: 'var(--fds-red-60, #d8000c)' }}>*</span>}
             </Label>
             <Input
               id={field.id}
               value={String(value)}
               onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleFieldChange(field.id, e.target.value)}
               placeholder={field.placeholder}
-              className={errors[field.id] ? 'border-red-500' : ''}
+              style={errors[field.id] ? { borderColor: 'var(--fds-red-60, #d8000c)' } : {}}
             />
             {errors[field.id] && (
-              <p className="text-red-500 text-sm">{errors[field.id]}</p>
+              <p style={{ color: 'var(--fds-red-60, #d8000c)', fontSize: 'var(--fds-font-size-sm, 0.875rem)' }}>{errors[field.id]}</p>
             )}
           </div>
         );
@@ -165,14 +165,19 @@ export function FormFill({ form, submission, onSaveDraft, onSubmit, onValidate, 
               value={String(value)}
               onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => handleFieldChange(field.id, e.target.value)}
               placeholder={field.placeholder}
-              className={`w-full rounded-md border px-3 py-2 text-sm ${
-                errors[field.id] 
-                  ? 'border-red-500' 
-                  : 'border-stone-300 dark:border-stone-600 bg-white dark:bg-stone-800'
-              }`}
+              style={{
+                width: '100%',
+                borderRadius: 'var(--fds-border-radius-md, 0.375rem)',
+                border: `1px solid ${errors[field.id] ? 'var(--fds-red-60, #d8000c)' : 'var(--fds-gray-200, #dbdbdc)'}`,
+                padding: 'var(--fds-spacing-xs, 0.5rem) var(--fds-spacing-s, 0.5rem)',
+                fontSize: 'var(--fds-font-size-sm, 0.875rem)',
+                fontFamily: 'var(--fds-font-family, system-ui, sans-serif)',
+                backgroundColor: 'white',
+                color: 'var(--fds-text-default, #1f2021)'
+              }}
             />
             {errors[field.id] && (
-              <p className="text-red-500 text-sm">{errors[field.id]}</p>
+              <p style={{ color: 'var(--fds-red-60, #d8000c)', fontSize: 'var(--fds-font-size-sm, 0.875rem)' }}>{errors[field.id]}</p>
             )}
           </div>
         );
@@ -182,11 +187,16 @@ export function FormFill({ form, submission, onSaveDraft, onSubmit, onValidate, 
   };
 
   return (
-    <div className="space-y-6">
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--fds-spacing-xl, 1.5rem)' }}>
       {/* Progress indicator */}
-      <div className="space-y-4">
-        <div className="flex justify-between items-center">
-          <h2 className="text-xl font-semibold text-stone-900 dark:text-stone-100">
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--fds-spacing-m, 0.75rem)' }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+          <h2 style={{
+            fontSize: 'var(--fds-font-size-xl, 1.25rem)',
+            fontWeight: 'var(--fds-font-weight-bold, 700)',
+            color: 'var(--fds-text-default, #1f2021)',
+            fontFamily: 'var(--fds-font-family, system-ui, sans-serif)'
+          }}>
             {form.title}
           </h2>
           <Badge variant="outline">
@@ -195,22 +205,35 @@ export function FormFill({ form, submission, onSaveDraft, onSubmit, onValidate, 
         </div>
         
         {/* Simple progress bar */}
-        <div className="w-full bg-stone-200 dark:bg-stone-700 rounded-full h-2">
+        <div style={{
+          width: '100%',
+          backgroundColor: 'var(--fds-gray-200, #dbdbdc)',
+          borderRadius: 'var(--fds-border-radius-full, 9999px)',
+          height: '0.5rem'
+        }}>
           <div 
-            className="bg-stone-900 dark:bg-stone-100 h-2 rounded-full transition-all duration-300"
-            style={{ width: `${((currentStep + 1) / formSteps.length) * 100}%` }}
+            style={{
+              backgroundColor: 'var(--fds-blue-60, #0066cc)',
+              height: '0.5rem',
+              borderRadius: 'var(--fds-border-radius-full, 9999px)',
+              transition: 'width 300ms ease',
+              width: `${((currentStep + 1) / formSteps.length) * 100}%`
+            }}
           ></div>
         </div>
         
-        <div className="flex gap-2">
+        <div style={{ display: 'flex', gap: 'var(--fds-spacing-xs, 0.5rem)' }}>
           {formSteps.map((step, index) => (
             <div 
               key={step.id} 
-              className={`flex-1 h-1 rounded-full ${
-                index <= currentStep 
-                  ? 'bg-stone-900 dark:bg-stone-100' 
-                  : 'bg-stone-200 dark:bg-stone-700'
-              }`}
+              style={{
+                flex: 1,
+                height: '0.25rem',
+                borderRadius: 'var(--fds-border-radius-full, 9999px)',
+                backgroundColor: index <= currentStep 
+                  ? 'var(--fds-blue-60, #0066cc)' 
+                  : 'var(--fds-gray-200, #dbdbdc)'
+              }}
             />
           ))}
         </div>
@@ -218,14 +241,23 @@ export function FormFill({ form, submission, onSaveDraft, onSubmit, onValidate, 
 
       {/* Validation errors */}
       {Object.keys(errors).length > 0 && (
-        <div className="rounded-lg border border-red-200 dark:border-red-800 bg-red-50 dark:bg-red-900/20 p-4">
-          <div className="flex items-start gap-3">
-            <AlertCircle className="h-4 w-4 text-red-500 mt-0.5 flex-shrink-0" />
+        <div style={{
+          borderRadius: 'var(--fds-border-radius-lg, 0.5rem)',
+          border: '1px solid var(--fds-red-100, #fbd3d3)',
+          backgroundColor: 'var(--fds-red-100, #fbd3d3)',
+          padding: 'var(--fds-spacing-m, 0.75rem)'
+        }}>
+          <div style={{ display: 'flex', alignItems: 'flex-start', gap: 'var(--fds-spacing-s, 0.5rem)' }}>
+            <AlertCircle style={{ width: '1rem', height: '1rem', color: 'var(--fds-red-60, #d8000c)', flexShrink: 0, marginTop: '0.125rem' }} />
             <div>
-              <h3 className="font-medium text-red-800 dark:text-red-200">Vennligst rett følgende feil:</h3>
-              <ul className="list-disc list-inside mt-2 space-y-1">
+              <h3 style={{
+                fontWeight: 'var(--fds-font-weight-medium, 500)',
+                color: 'var(--fds-red-70, #a20009)',
+                fontFamily: 'var(--fds-font-family, system-ui, sans-serif)'
+              }}>Vennligst rett følgende feil:</h3>
+              <ul style={{ listStyle: 'disc', listStylePosition: 'inside', marginTop: 'var(--fds-spacing-xs, 0.5rem)', display: 'flex', flexDirection: 'column', gap: 'var(--fds-spacing-xxs, 0.25rem)' }}>
                 {Object.values(errors).map((error, index) => (
-                  <li key={index} className="text-red-700 dark:text-red-300 text-sm">{error}</li>
+                  <li key={index} style={{ color: 'var(--fds-red-70, #a20009)', fontSize: 'var(--fds-font-size-sm, 0.875rem)' }}>{error}</li>
                 ))}
               </ul>
             </div>
@@ -234,41 +266,61 @@ export function FormFill({ form, submission, onSaveDraft, onSubmit, onValidate, 
       )}
 
       {/* Step content */}
-      <Card className="border-stone-200 dark:border-stone-700">
+      <Card style={{ borderColor: 'var(--fds-gray-200, #dbdbdc)' }}>
         <CardHeader>
-          <CardTitle className="text-lg text-stone-900 dark:text-stone-100">
+          <CardTitle style={{
+            fontSize: 'var(--fds-font-size-lg, 1.125rem)',
+            color: 'var(--fds-text-default, #1f2021)'
+          }}>
             {currentStepData.title}
           </CardTitle>
         </CardHeader>
-        <CardContent className="space-y-6">
+        <CardContent style={{ display: 'flex', flexDirection: 'column', gap: 'var(--fds-spacing-xl, 1.5rem)' }}>
           {currentStepData.fields.map(field => (
-            <div key={field.id}>
+            <div key={field.id} style={{ display: 'flex', flexDirection: 'column', gap: 'var(--fds-spacing-xs, 0.5rem)' }}>
               {renderField(field)}
             </div>
           ))}
 
           {/* Attachments section */}
           {currentStep === 1 && (
-            <div className="space-y-4">
-              <h3 className="font-medium text-stone-900 dark:text-stone-100">Vedlegg</h3>
-              <div className="space-y-2">
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--fds-spacing-m, 0.75rem)' }}>
+              <h3 style={{
+                fontWeight: 'var(--fds-font-weight-medium, 500)',
+                color: 'var(--fds-text-default, #1f2021)',
+                fontFamily: 'var(--fds-font-family, system-ui, sans-serif)'
+              }}>Vedlegg</h3>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--fds-spacing-xs, 0.5rem)' }}>
                 {submission?.attachments && submission.attachments.length > 0 ? (
-                  <div className="space-y-2">
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--fds-spacing-xs, 0.5rem)' }}>
                     {submission.attachments.map((attachment, index) => (
-                      <div key={index} className="flex items-center justify-between p-3 bg-stone-50 dark:bg-stone-800 rounded-lg">
-                        <span className="text-sm text-stone-700 dark:text-stone-300">{attachment}</span>
-                        <Button variant="ghost" size="sm" className="text-red-500 hover:text-red-700">
+                      <div key={index} style={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'space-between',
+                        padding: 'var(--fds-spacing-s, 0.5rem)',
+                        backgroundColor: 'var(--fds-gray-100, #f7f7f7)',
+                        borderRadius: 'var(--fds-border-radius-lg, 0.5rem)'
+                      }}>
+                        <span style={{
+                          fontSize: 'var(--fds-font-size-sm, 0.875rem)',
+                          color: 'var(--fds-text-default, #1f2021)'
+                        }}>{attachment}</span>
+                        <Button variant="ghost" size="sm" style={{ color: 'var(--fds-red-60, #d8000c)' }}>
                           Fjern
                         </Button>
                       </div>
                     ))}
                   </div>
                 ) : (
-                  <p className="text-sm text-stone-500 dark:text-stone-400">Ingen vedlegg lastet opp</p>
+                  <p style={{
+                    fontSize: 'var(--fds-font-size-sm, 0.875rem)',
+                    color: 'var(--fds-text-subtle, #717274)'
+                  }}>Ingen vedlegg lastet opp</p>
                 )}
                 
-                <Button variant="outline" className="w-full">
-                  <Upload className="w-4 h-4 mr-2" />
+                <Button variant="outline" style={{ width: '100%' }}>
+                  <Upload style={{ width: '1rem', height: '1rem', marginRight: 'var(--fds-spacing-xs, 0.5rem)' }} />
                   Legg til vedlegg
                 </Button>
               </div>
@@ -276,16 +328,28 @@ export function FormFill({ form, submission, onSaveDraft, onSubmit, onValidate, 
           )}
 
           {/* Autosave indicator */}
-          <div className="flex items-center gap-2 text-sm text-stone-500 dark:text-stone-400">
+          <div style={{
+            display: 'flex',
+            alignItems: 'center',
+            gap: 'var(--fds-spacing-xs, 0.5rem)',
+            fontSize: 'var(--fds-font-size-sm, 0.875rem)',
+            color: 'var(--fds-text-subtle, #717274)'
+          }}>
             {saveStatus === 'saving' && (
               <>
-                <div className="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></div>
+                <div style={{
+                  width: '0.5rem',
+                  height: '0.5rem',
+                  backgroundColor: 'var(--fds-blue-60, #0066cc)',
+                  borderRadius: 'var(--fds-border-radius-full, 9999px)',
+                  animation: 'pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite'
+                }}></div>
                 Lagrer utkast...
               </>
             )}
             {saveStatus === 'saved' && (
               <>
-                <CheckCircle className="w-4 h-4 text-green-500" />
+                <CheckCircle style={{ width: '1rem', height: '1rem', color: 'var(--fds-green-60, #068400)' }} />
                 Utkast lagret
               </>
             )}
@@ -293,8 +357,8 @@ export function FormFill({ form, submission, onSaveDraft, onSubmit, onValidate, 
           </div>
 
           {/* Navigation buttons */}
-          <Separator className="my-4" />
-          <div className="flex justify-between">
+          <Separator style={{ margin: 'var(--fds-spacing-m, 0.75rem) 0' }} />
+          <div style={{ display: 'flex', justifyContent: 'space-between' }}>
             <Button 
               variant="outline" 
               onClick={handlePrevious}
@@ -303,12 +367,12 @@ export function FormFill({ form, submission, onSaveDraft, onSubmit, onValidate, 
               Forrige
             </Button>
             
-            <div className="flex gap-2">
+            <div style={{ display: 'flex', gap: 'var(--fds-spacing-xs, 0.5rem)' }}>
               <Button 
                 variant="secondary"
                 onClick={() => onSaveDraft(formData)}
               >
-                <Save className="w-4 h-4 mr-2" />
+                <Save style={{ width: '1rem', height: '1rem', marginRight: 'var(--fds-spacing-xs, 0.5rem)' }} />
                 Lagre utkast
               </Button>
               
@@ -317,7 +381,7 @@ export function FormFill({ form, submission, onSaveDraft, onSubmit, onValidate, 
               >
                 {currentStep === formSteps.length - 1 ? (
                   <>
-                    <Send className="w-4 h-4 mr-2" />
+                    <Send style={{ width: '1rem', height: '1rem', marginRight: 'var(--fds-spacing-xs, 0.5rem)' }} />
                     Send inn
                   </>
                 ) : 'Neste'}

@@ -67,20 +67,28 @@ const InsightsDashboard: React.FC<InsightsDashboardProps> = ({
   };
 
   return (
-    <div className="space-y-6">
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--fds-spacing-xl, 1.5rem)' }}>
       {/* Dashboard Header */}
-      <div className="flex justify-between items-center">
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
         <div>
-          <h1 className="text-3xl font-bold">Innsikt</h1>
-          <p className="text-muted-foreground">Analyseverktøy for bruksmønstre, tilgjengelighet og språkbruk</p>
+          <h1 style={{
+            fontSize: 'var(--fds-font-size-3xl, 1.875rem)',
+            fontWeight: 'var(--fds-font-weight-bold, 700)',
+            color: 'var(--fds-text-default, #1f2021)',
+            fontFamily: 'var(--fds-font-family, system-ui, sans-serif)'
+          }}>Innsikt</h1>
+          <p style={{
+            color: 'var(--fds-text-subtle, #717274)',
+            fontFamily: 'var(--fds-font-family, system-ui, sans-serif)'
+          }}>Analyseverktøy for bruksmønstre, tilgjengelighet og språkbruk</p>
         </div>
-        <div className="flex space-x-2">
+        <div style={{ display: 'flex', gap: 'var(--fds-spacing-xs, 0.5rem)' }}>
           <Button variant="outline" onClick={() => onExport?.('csv')}>
-            <Download className="w-4 h-4 mr-2" />
+            <Download style={{ width: '1rem', height: '1rem', marginRight: 'var(--fds-spacing-xs, 0.5rem)' }} />
             Eksporter CSV
           </Button>
           <Button variant="outline" onClick={() => onExport?.('pdf')}>
-            <Download className="w-4 h-4 mr-2" />
+            <Download style={{ width: '1rem', height: '1rem', marginRight: 'var(--fds-spacing-xs, 0.5rem)' }} />
             Eksporter PDF
           </Button>
         </div>
@@ -88,12 +96,25 @@ const InsightsDashboard: React.FC<InsightsDashboardProps> = ({
 
       {/* Filter Controls */}
       <Card>
-        <CardContent className="pt-6">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <CardContent style={{ paddingTop: 'var(--fds-spacing-xl, 1.5rem)' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: 'var(--fds-spacing-m, 0.75rem)' }}>
             <div>
-              <label className="text-sm font-medium mb-1 block">Periode</label>
+              <label style={{
+                fontSize: 'var(--fds-font-size-sm, 0.875rem)',
+                fontWeight: 'var(--fds-font-weight-medium, 500)',
+                marginBottom: 'var(--fds-spacing-xxs, 0.25rem)',
+                display: 'block',
+                fontFamily: 'var(--fds-font-family, system-ui, sans-serif)'
+              }}>Periode</label>
               <select 
-                className="w-full p-2 border rounded-md"
+                style={{
+                  width: '100%',
+                  padding: 'var(--fds-spacing-xs, 0.5rem)',
+                  border: '1px solid var(--fds-gray-200, #dbdbdc)',
+                  borderRadius: 'var(--fds-border-radius-md, 0.375rem)',
+                  fontFamily: 'var(--fds-font-family, system-ui, sans-serif)',
+                  fontSize: 'var(--fds-font-size-sm, 0.875rem)'
+                }}
                 onChange={(e) => onFilterChange?.({ period: e.target.value })}
               >
                 <option value="last7">Siste 7 dager</option>
@@ -103,9 +124,22 @@ const InsightsDashboard: React.FC<InsightsDashboardProps> = ({
               </select>
             </div>
             <div>
-              <label className="text-sm font-medium mb-1 block">Skjema</label>
+              <label style={{
+                fontSize: 'var(--fds-font-size-sm, 0.875rem)',
+                fontWeight: 'var(--fds-font-weight-medium, 500)',
+                marginBottom: 'var(--fds-spacing-xxs, 0.25rem)',
+                display: 'block',
+                fontFamily: 'var(--fds-font-family, system-ui, sans-serif)'
+              }}>Skjema</label>
               <select 
-                className="w-full p-2 border rounded-md"
+                style={{
+                  width: '100%',
+                  padding: 'var(--fds-spacing-xs, 0.5rem)',
+                  border: '1px solid var(--fds-gray-200, #dbdbdc)',
+                  borderRadius: 'var(--fds-border-radius-md, 0.375rem)',
+                  fontFamily: 'var(--fds-font-family, system-ui, sans-serif)',
+                  fontSize: 'var(--fds-font-size-sm, 0.875rem)'
+                }}
                 onChange={(e) => onFilterChange?.({ formId: e.target.value })}
               >
                 <option value="">Alle skjema</option>
@@ -115,9 +149,22 @@ const InsightsDashboard: React.FC<InsightsDashboardProps> = ({
               </select>
             </div>
             <div>
-              <label className="text-sm font-medium mb-1 block">Leietaker</label>
+              <label style={{
+                fontSize: 'var(--fds-font-size-sm, 0.875rem)',
+                fontWeight: 'var(--fds-font-weight-medium, 500)',
+                marginBottom: 'var(--fds-spacing-xxs, 0.25rem)',
+                display: 'block',
+                fontFamily: 'var(--fds-font-family, system-ui, sans-serif)'
+              }}>Leietaker</label>
               <select 
-                className="w-full p-2 border rounded-md"
+                style={{
+                  width: '100%',
+                  padding: 'var(--fds-spacing-xs, 0.5rem)',
+                  border: '1px solid var(--fds-gray-200, #dbdbdc)',
+                  borderRadius: 'var(--fds-border-radius-md, 0.375rem)',
+                  fontFamily: 'var(--fds-font-family, system-ui, sans-serif)',
+                  fontSize: 'var(--fds-font-size-sm, 0.875rem)'
+                }}
                 onChange={(e) => onFilterChange?.({ tenant: e.target.value })}
               >
                 <option value="">Alle leietakere</option>
@@ -152,24 +199,81 @@ const InsightsDashboard: React.FC<InsightsDashboardProps> = ({
           </CardHeader>
           <CardContent>
             <div className="overflow-x-auto">
-              <table className="w-full">
+              <table style={{ width: '100%' }}>
                 <thead>
-                  <tr className="border-b">
-                    <th className="text-left py-2">Skjema</th>
-                    <th className="text-right py-2">Visninger</th>
-                    <th className="text-right py-2">Startet</th>
-                    <th className="text-right py-2">Fullført</th>
-                    <th className="text-right py-2">Rate</th>
+                  <tr style={{ borderBottom: '1px solid var(--fds-gray-200, #dbdbdc)' }}>
+                    <th style={{
+                      textAlign: 'left',
+                      padding: 'var(--fds-spacing-xs, 0.5rem) 0',
+                      fontSize: 'var(--fds-font-size-sm, 0.875rem)',
+                      fontWeight: 'var(--fds-font-weight-bold, 700)',
+                      fontFamily: 'var(--fds-font-family, system-ui, sans-serif)'
+                    }}>Skjema</th>
+                    <th style={{
+                      textAlign: 'right',
+                      padding: 'var(--fds-spacing-xs, 0.5rem) 0',
+                      fontSize: 'var(--fds-font-size-sm, 0.875rem)',
+                      fontWeight: 'var(--fds-font-weight-bold, 700)',
+                      fontFamily: 'var(--fds-font-family, system-ui, sans-serif)'
+                    }}>Visninger</th>
+                    <th style={{
+                      textAlign: 'right',
+                      padding: 'var(--fds-spacing-xs, 0.5rem) 0',
+                      fontSize: 'var(--fds-font-size-sm, 0.875rem)',
+                      fontWeight: 'var(--fds-font-weight-bold, 700)',
+                      fontFamily: 'var(--fds-font-family, system-ui, sans-serif)'
+                    }}>Startet</th>
+                    <th style={{
+                      textAlign: 'right',
+                      padding: 'var(--fds-spacing-xs, 0.5rem) 0',
+                      fontSize: 'var(--fds-font-size-sm, 0.875rem)',
+                      fontWeight: 'var(--fds-font-weight-bold, 700)',
+                      fontFamily: 'var(--fds-font-family, system-ui, sans-serif)'
+                    }}>Fullført</th>
+                    <th style={{
+                      textAlign: 'right',
+                      padding: 'var(--fds-spacing-xs, 0.5rem) 0',
+                      fontSize: 'var(--fds-font-size-sm, 0.875rem)',
+                      fontWeight: 'var(--fds-font-weight-bold, 700)',
+                      fontFamily: 'var(--fds-font-family, system-ui, sans-serif)'
+                    }}>Rate</th>
                   </tr>
                 </thead>
                 <tbody>
                   {topForms.map((form) => (
-                    <tr key={form.id} className="border-b hover:bg-muted/50">
-                      <td className="py-2 font-medium">{form.name}</td>
-                      <td className="py-2 text-right">{form.views.toLocaleString()}</td>
-                      <td className="py-2 text-right">{form.starts.toLocaleString()}</td>
-                      <td className="py-2 text-right">{form.submissions.toLocaleString()}</td>
-                      <td className="py-2 text-right">{form.completionRate}%</td>
+                    <tr 
+                      key={form.id} 
+                      style={{
+                        borderBottom: '1px solid var(--fds-gray-200, #dbdbdc)'
+                      }}
+                      onMouseEnter={(e) => e.currentTarget.style.backgroundColor = 'var(--fds-blue-50, #e7f3fa)'}
+                      onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'transparent'}
+                    >
+                      <td style={{
+                        padding: 'var(--fds-spacing-xs, 0.5rem) 0',
+                        fontWeight: 'var(--fds-font-weight-medium, 500)',
+                        fontFamily: 'var(--fds-font-family, system-ui, sans-serif)'
+                      }}>{form.name}</td>
+                      <td style={{
+                        padding: 'var(--fds-spacing-xs, 0.5rem) 0',
+                        textAlign: 'right',
+                        fontFamily: 'var(--fds-font-family, system-ui, sans-serif)'
+                      }}>{form.views.toLocaleString()}</td>
+                      <td style={{
+                        padding: 'var(--fds-spacing-xs, 0.5rem) 0',
+                        textAlign: 'right',
+                        fontFamily: 'var(--fds-font-family, system-ui, sans-serif)'
+                      }}>{form.starts.toLocaleString()}</td>
+                      <td style={{
+                        padding: 'var(--fds-spacing-xs, 0.5rem) 0',
+                        textAlign: 'right',
+                        fontFamily: 'var(--fds-font-family, system-ui, sans-serif)'
+                      }}>{form.submissions.toLocaleString()}</td>
+                      <td style={{
+                        padding: 'var(--fds-spacing-xs, 0.5rem) 0',
+                        textAlign: 'right',
+                        fontFamily: 'var(--fds-font-family, system-ui, sans-serif)'
+                      }}>{form.completionRate}%</td>
                     </tr>
                   ))}
                 </tbody>
